@@ -1,0 +1,7 @@
+displayName = Calamity's Souls 灾厄魂
+author = Plantare(BiliBili@世纪小花)
+version = 1.0
+modReferences = CalamityMod
+includeSource = true
+includePDB = true
+sortAfter = CalamityMod

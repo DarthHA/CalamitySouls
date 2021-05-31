@@ -1,0 +1,42 @@
+﻿Not very completed yet
+
+*Announcement*
+It's more like a "fargo-style calamity expansion mod" instead of "another fargo's DLC mod".
+And in which case it's not supposed to load with fargo's souls mod, ESPECIALLY eternity mode(I haven't started works with these issues yet) , sorry terry :(
+
+*Current Content*
+-29 Enchantments from every armor
+-5 Forces and 1 Soul
+-5 more items
+-1 new mode(though roughly done)
+-Some "interesting" bugs
+
+*Future Fixes Required(at least)*
+-Finish the config
+-Rebalance
+-Manic mode remake
+-Class essenses and other souls
+-Fargo reference(Tons of work)
+
+*The following content is Chinese description*
+*以上是英文简介*
+
+完成度不算很高
+
+*声明*
+这个mod更像是“fargo风格的灾厄拓展mod”而非“另一个fargo DLC mod”
+所以不推荐和fargo魂石mod一起使用，尤 其 是 永 恒 模 式（我还没做bug修复等）
+
+*目前内容*
+-29个魔石，每个盔甲对应一个
+-5个力和1个魂
+-5个其他物品
+-一个新模式（虽然没怎么认真做）
+-一些“有趣”的bug
+
+*未来的打算*
+-添加config
+-重新平衡
+-重做脑瘫模式
+-加入职业精华和其他魂等
+-支持fargo（巨量工作）
