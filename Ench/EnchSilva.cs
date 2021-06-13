@@ -17,7 +17,6 @@ namespace CalamitySouls.Ench
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
             string color = "E2BC4A";
-            string key = CalamitySouls.GodslayerKey.TooltipHotkeyString();
             if (CSUtils.GameCultureChinese)
             {
                 QuickModiLine(ref tooltips, 0, "「神话树妖闭上了她的双眼。」");
@@ -52,15 +51,15 @@ namespace CalamitySouls.Ench
             recipe.AddIngredient(ModContent.ItemType<CalamityMod.Items.Armor.SilvaArmor>());
             recipe.AddIngredient(ModContent.ItemType<CalamityMod.Items.Armor.SilvaLeggings>());
             recipe.AddIngredient(ModContent.ItemType<CalamityMod.Items.Accessories.Wings.SilvaWings>());
-            recipe.AddIngredient(ModContent.ItemType<CalamityMod.Items.Weapons.Melee.Nadir>());
-            recipe.AddIngredient(ModContent.ItemType<CalamityMod.Items.Weapons.Melee.ScourgeoftheCosmos>());
-            recipe.AddIngredient(ModContent.ItemType<CalamityMod.Items.Weapons.Ranged.Ultima>());
-            recipe.AddIngredient(ModContent.ItemType<CalamityMod.Items.Weapons.Ranged.RubicoPrime>());
-            recipe.AddIngredient(ModContent.ItemType<CalamityMod.Items.Weapons.Ranged.Onyxia>());
-            recipe.AddIngredient(ModContent.ItemType<CalamityMod.Items.Weapons.Magic.Climax>());
-            recipe.AddIngredient(ModContent.ItemType<CalamityMod.Items.Weapons.Magic.AlphaRay>());
-            recipe.AddIngredient(ModContent.ItemType<CalamityMod.Items.Weapons.Summon.MidnightSunBeacon>());
-            recipe.AddIngredient(ModContent.ItemType<CalamityMod.Items.Weapons.Rogue.EclipsesFall>());
+            //recipe.AddIngredient(ModContent.ItemType<CalamityMod.Items.Weapons.Melee.Nadir>());
+            //recipe.AddIngredient(ModContent.ItemType<CalamityMod.Items.Weapons.Melee.ScourgeoftheCosmos>());
+            //recipe.AddIngredient(ModContent.ItemType<CalamityMod.Items.Weapons.Ranged.Ultima>());
+            //recipe.AddIngredient(ModContent.ItemType<CalamityMod.Items.Weapons.Ranged.RubicoPrime>());
+            //recipe.AddIngredient(ModContent.ItemType<CalamityMod.Items.Weapons.Ranged.Onyxia>());
+            //recipe.AddIngredient(ModContent.ItemType<CalamityMod.Items.Weapons.Magic.Climax>());
+            //recipe.AddIngredient(ModContent.ItemType<CalamityMod.Items.Weapons.Magic.AlphaRay>());
+            //recipe.AddIngredient(ModContent.ItemType<CalamityMod.Items.Weapons.Summon.MidnightSunBeacon>());
+            //recipe.AddIngredient(ModContent.ItemType<CalamityMod.Items.Weapons.Rogue.EclipsesFall>());
             recipe.AddTile(TileID.LunarCraftingStation);
             recipe.SetResult(this);
             recipe.AddRecipe();

@@ -20,20 +20,20 @@ namespace CalamitySouls.Ench
             {
                 QuickModiLine(ref tooltips, 0, "「追随神的脚步。」");
                 QuickModiLine(ref tooltips, 1, CSUtils.GetModItemText(item.type, color) +
-                    "增加21%伤害");
+                    "增加21%伤害，+50%加速度");
                 QuickModiLine(ref tooltips, 2, CSUtils.GetModItemText(item.type, color) +
                     "不使用物品两秒会获得异界增益，使用物品会打破它");
                 QuickModiLine(ref tooltips, 3, CSUtils.GetModItemText(item.type, color) +
-                    "异界增益使你的移速和加速度翻倍，高速移动时你处于无敌状态且能反弹弹幕");
+                    "异界增益在非boss战期间使你的移增加50%，高速移动时你处于无敌状态且能反弹弹幕");
                 return;
             }
             QuickModiLine(ref tooltips, 0, "「Follow the God.」");
             QuickModiLine(ref tooltips, 1, CSUtils.GetModItemText(item.type, color) +
-                "+21% damage");
+                "+21% damage, +50% acceleration");
             QuickModiLine(ref tooltips, 2, CSUtils.GetModItemText(item.type, color) +
                 "Not using item for 2s grant you Otherworldly buff, and the use of any item breaks it");
             QuickModiLine(ref tooltips, 3, CSUtils.GetModItemText(item.type, color) +
-                "With the buff your speed and acceleration is doubled, and when moving quickly you are immnue and can reflect projectiles");
+                "With the buff you grant 50% more speed while no boss is alive, and when moving quickly you are immnue and can reflect projectiles");
         }
         public override void UpdateAccessory(Player player, bool hideVisual)
         {

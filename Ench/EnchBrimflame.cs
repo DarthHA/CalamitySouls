@@ -51,6 +51,7 @@ namespace CalamitySouls.Ench
             recipe.AddIngredient(ModContent.ItemType<CalamityMod.Items.Weapons.Magic.BrimroseStaff>());
             recipe.AddIngredient(ModContent.ItemType<CalamityMod.Items.Weapons.Magic.BurningSea>());
             recipe.AddIngredient(ModContent.ItemType<CalamityMod.Items.Weapons.Summon.IgneousExaltation>());
+            recipe.AddIngredient(ModContent.ItemType<CalamityMod.Items.Weapons.Rogue.Brimblade>());
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);
             recipe.AddRecipe();

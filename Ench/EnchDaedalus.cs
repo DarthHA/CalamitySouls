@@ -24,18 +24,18 @@ namespace CalamitySouls.Ench
                 QuickModiLine(ref tooltips, 1, CSUtils.GetModItemText(ModContent.ItemType<CalamityMod.Items.Armor.DaedalusBreastplate>(), color) +
                     "增加20生命上限，受伤时闪避并生成一圈追踪水晶，冷却45秒");
                 QuickModiLine(ref tooltips, 2, CSUtils.GetModItemText(item.type, color) +
-                    "免疫伊卡洛斯之愚蠢，一个真代达罗斯水晶协助你，根据手持物品切换攻击模式");
+                    "免疫伊卡洛斯之愚蠢，一个真代达罗斯水晶协助你，增加10%移动速度和加速度");
                 return;
             }
             QuickModiLine(ref tooltips, 0, "「The one who escaped from the sun build up a frozen world.」");
             QuickModiLine(ref tooltips, 1, CSUtils.GetModItemText(ModContent.ItemType<CalamityMod.Items.Armor.DaedalusBreastplate>(), color) +
                 "+20 max health, evade damage and burst out chasing crystal shard with a 45s cooldown");
             QuickModiLine(ref tooltips, 2, CSUtils.GetModItemText(item.type, color) +
-                "Immunity to Icarus' Folly, a true daedalus crystal assist you which swiches attack according to your holding item");
+                "Immunity to Icarus' Folly, a true daedalus crystal assist you, +10% movement speed and acceleration");
         }
         public override void SetEnchDefaults()
         {
-            item.defense = 8;
+            item.defense = 4;
         }
         public override void UpdateAccessory(Player player, bool hideVisual)
         {

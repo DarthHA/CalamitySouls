@@ -20,16 +20,16 @@ namespace CalamitySouls.Ench
             {
                 QuickModiLine(ref tooltips, 0, "「Clamity」");
                 QuickModiLine(ref tooltips, 1, CSUtils.GetModItemText(ModContent.ItemType<CalamityMod.Items.Armor.MolluskShellplate>(), color) +
-                    "两个贝壳（召唤物）助你战斗，且贝壳（敌怪）对你友好");
+                    "两个贝壳（召唤物）助你战斗，你无视水的阻力，且贝壳（敌怪）对你友好");
                 QuickModiLine(ref tooltips, 2, CSUtils.GetModItemText(item.type, color) +
-                    "当拥有任意套装效果（不包括软壳套）时，增加20%暴击");
+                    "当拥有任意套装效果（不包括软壳套）时，增加20%暴击和20%近战攻速");
                 return;
             }
             QuickModiLine(ref tooltips, 0, "「Clamity」");
             QuickModiLine(ref tooltips, 1, CSUtils.GetModItemText(ModContent.ItemType<CalamityMod.Items.Armor.MolluskShellplate>(), color) +
-                "Two shellfishes(minion) aid you in combat, clams(enermy) become friendly");
+                "Two shellfishes(minion) aid you in combat, grant better mobility in water, clams(enermy) become friendly");
             QuickModiLine(ref tooltips, 2, CSUtils.GetModItemText(item.type, color) +
-                "When you have any kind of set bonus(the mollusk itself is not included), you'd grant 20% increased crit");
+                "When you have any kind of set bonus(the mollusk itself is not included), you'd grant 20% increased crit and melee speed");
         }
         public override void SetEnchDefaults()
         {

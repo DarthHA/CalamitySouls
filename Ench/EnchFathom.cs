@@ -20,7 +20,7 @@ namespace CalamitySouls.Ench
             {
                 QuickModiLine(ref tooltips, 0, "「合则存，分必亡。」");
                 QuickModiLine(ref tooltips, 1, CSUtils.GetModItemText(ModContent.ItemType<CalamityMod.Items.Armor.FathomSwarmerBreastplate>(), color) +
-                    "+10%召唤伤害，+1召唤栏，在深渊提供大量光照和呼吸");
+                    "+10%伤害，+1召唤栏，在深渊提供大量光照和呼吸");
                 QuickModiLine(ref tooltips, 2, CSUtils.GetModItemText(item.type, color) +
                     "召唤3个作用不同的小鱼助你战斗");
                 QuickModiLine(ref tooltips, 3, CSUtils.GetModItemText(item.type, color) +
@@ -29,7 +29,7 @@ namespace CalamitySouls.Ench
             }
             QuickModiLine(ref tooltips, 0, "「United we stand, divided we fall.」");
             QuickModiLine(ref tooltips, 1, CSUtils.GetModItemText(ModContent.ItemType<CalamityMod.Items.Armor.FathomSwarmerBreastplate>(), color) +
-                "+10% minion damage, +1 max minion and provides a good amount of light and greatly reduces breath loss in the abyss");
+                "+10% damage, +1 max minion and provides a good amount of light and greatly reduces breath loss in the abyss");
             QuickModiLine(ref tooltips, 2, CSUtils.GetModItemText(item.type, color) +
                 "Spawn 3 fathom fishes to assist you, doing different jobs");
             QuickModiLine(ref tooltips, 3, CSUtils.GetModItemText(item.type, color) +
@@ -45,13 +45,10 @@ namespace CalamitySouls.Ench
             recipe.AddIngredient(ModContent.ItemType<CalamityMod.Items.Armor.FathomSwarmerVisage>());
             recipe.AddIngredient(ModContent.ItemType<CalamityMod.Items.Armor.FathomSwarmerBreastplate>());
             recipe.AddIngredient(ModContent.ItemType<CalamityMod.Items.Armor.FathomSwarmerBoots>());
-            recipe.AddIngredient(ModContent.ItemType<CalamityMod.Items.Weapons.Melee.AbyssBlade>());
             recipe.AddIngredient(ModContent.ItemType<CalamityMod.Items.Weapons.Melee.TyphonsGreed>());
             recipe.AddIngredient(ModContent.ItemType<CalamityMod.Items.Weapons.Ranged.FlakKraken>());
             recipe.AddIngredient(ModContent.ItemType<CalamityMod.Items.Weapons.Ranged.Triploon>());
-            recipe.AddIngredient(ModContent.ItemType<CalamityMod.Items.Weapons.Magic.UndinesRetribution>());
             recipe.AddIngredient(ModContent.ItemType<CalamityMod.Items.Weapons.Summon.DreadmineStaff>());
-            recipe.AddIngredient(ModContent.ItemType<CalamityMod.Items.Weapons.Rogue.BallisticPoisonBomb>());
             recipe.AddIngredient(ModContent.ItemType<CalamityMod.Items.Weapons.Rogue.Apoctolith>());
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);

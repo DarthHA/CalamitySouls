@@ -65,6 +65,7 @@ namespace CalamitySouls.Force
             recipe.AddIngredient(ModContent.ItemType<EnchDaedalus>());
             recipe.AddIngredient(ModContent.ItemType<EnchTarragon>());
             recipe.AddIngredient(ModContent.ItemType<EnchSilva>());
+            recipe.AddIngredient(ModContent.ItemType<CalamityMod.Items.Materials.AuricBar>(), 20);
             recipe.AddTile(TileID.LunarCraftingStation);
             recipe.SetResult(this);
             recipe.AddRecipe();

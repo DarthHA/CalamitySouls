@@ -22,18 +22,18 @@ namespace CalamitySouls.Ench
                 QuickModiLine(ref tooltips, 1, CSUtils.GetModItemText(ModContent.ItemType<CalamityMod.Items.Armor.AtaxiaArmor>(), color) +
                     "低于半血时获得狱火药水效果，受伤有20%几率造成爆炸");
                 QuickModiLine(ref tooltips, 2, CSUtils.GetModItemText(item.type, color) +
-                    "死亡时以10血复活，该能力冷却为120秒");
+                    "增加25%移速和加速度，死亡时以10血复活，复活冷却为120秒");
                 return;
             }
             QuickModiLine(ref tooltips, 0, "「Enermy is behind the nuclear-polluted water.」");
             QuickModiLine(ref tooltips, 1, CSUtils.GetModItemText(ModContent.ItemType<CalamityMod.Items.Armor.AtaxiaArmor>(), color) +
                 "Inferno effect when below 50% life,and you have a 20% chance to emit a blazing explosion when you are hit");
             QuickModiLine(ref tooltips, 2, CSUtils.GetModItemText(item.type, color) +
-                "You revive at 10 hp when dead which have a 120s cooldown");
+                "+25% movement speed and acceleration, you revive at 10 hp when dead which have a 120s cooldown");
         }
         public override void SetEnchDefaults()
         {
-            item.defense = 16;
+            item.defense = 8;
         }
         public override void UpdateAccessory(Player player, bool hideVisual)
         {

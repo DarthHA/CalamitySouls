@@ -27,7 +27,7 @@ namespace CalamitySouls.Force
                 QuickModiLine(ref tooltips, ref nextLine, CSUtils.GetModItemText(ModContent.ItemType<EnchPlaguebringer>(), "E54242") +
                     "获得一个瘟疫冲刺，敌人多受到10%伤害");
                 QuickModiLine(ref tooltips, ref nextLine, CSUtils.GetModItemText(ModContent.ItemType<EnchAstral>(), "63A0A4") +
-                    "获得全知药水的效果，小幅度增加各种属性");
+                    "获得全知药水的效果，大幅度增加各种属性");
                 QuickModiLine(ref tooltips, ref nextLine, CSUtils.GetModItemText(ModContent.ItemType<EnchPrismatic>(), "FF6AF6") +
                     "召唤一个在你周围环绕，改变敌对弹幕方向的棱镜，敌人的攻击将会拥有预警线");
                 return;
@@ -40,14 +40,14 @@ namespace CalamitySouls.Force
             QuickModiLine(ref tooltips, ref nextLine, CSUtils.GetModItemText(ModContent.ItemType<EnchPlaguebringer>(), "E54242") +
                 "Grants a plague dash and enermies take 10% more damage");
             QuickModiLine(ref tooltips, ref nextLine, CSUtils.GetModItemText(ModContent.ItemType<EnchAstral>(), "63A0A4") +
-                "Omnisense effect, minor increase on many stats");
+                "Omnisense effect, major increase on many stats");
             QuickModiLine(ref tooltips, ref nextLine, CSUtils.GetModItemText(ModContent.ItemType<EnchPrismatic>(), "FF6AF6") +
                 "Spawn a prism that circle around you and change hostile projectile's direction, enermies' attack will have their trail shown");
         }
         public override void SetForceDefaults()
         {
-            item.defense += 5;
-            item.lifeRegen += 5;
+            item.defense += 15;
+            item.lifeRegen += 10;
         }
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
@@ -61,6 +61,7 @@ namespace CalamitySouls.Force
             recipe.AddIngredient(ModContent.ItemType<EnchPlaguebringer>());
             recipe.AddIngredient(ModContent.ItemType<EnchAstral>());
             recipe.AddIngredient(ModContent.ItemType<EnchPrismatic>());
+            recipe.AddIngredient(ModContent.ItemType<CalamityMod.Items.Materials.RuinousSoul>(), 20);
             recipe.AddTile(TileID.LunarCraftingStation);
             recipe.SetResult(this);
             recipe.AddRecipe();

@@ -37,7 +37,7 @@ namespace CalamitySouls.Ench
             QuickModiLine(ref tooltips, 3, CSUtils.GetModItemText(ModContent.ItemType<CalamityMod.Items.Accessories.NecklaceofVexation>(), color) +
                 "Extra 10% damage under half life, attacks inflict ichor, cursed inferno and venom");
             QuickModiLine(ref tooltips, 4, CSUtils.GetModItemText(item.type, color) +
-                "Plantation Staff has double speed");
+                "Plantation Staff has doubled speed");
         }
         public override void UpdateAccessory(Player player, bool hideVisual)
         {

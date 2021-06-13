@@ -22,14 +22,14 @@ namespace CalamitySouls.Ench
                 QuickModiLine(ref tooltips, 1, CSUtils.GetModItemText(ModContent.ItemType<CalamityMod.Items.Armor.XerocPlateMail>(), color) +
                     "击中敌人会释放各种各样的额外弹幕，常驻宇宙之怒和宇宙狂怒增益");
                 QuickModiLine(ref tooltips, 2, CSUtils.GetModItemText(item.type, color) +
-                    "一个皇天幻影保护你，并根据手持物品切换攻击方式");
+                    "增加40%移速和加速度，一个皇天幻影保护你，并根据手持物品切换攻击方式");
                 return;
             }
             QuickModiLine(ref tooltips, 0, "「A rogue worth a king.」");
             QuickModiLine(ref tooltips, 1, CSUtils.GetModItemText(ModContent.ItemType<CalamityMod.Items.Armor.XerocPlateMail>(), color) +
                 "Hitting a creature release tons of projectiles, you are imbued with cosmic wrath and rage");
             QuickModiLine(ref tooltips, 2, CSUtils.GetModItemText(item.type, color) +
-                "A empyrean phantasm assist you and switch attack pattern according to your holding item");
+                "+40% acceleration and speed, a empyrean phantasm assist you and switch attack pattern according to your holding item");
         }
         public override void UpdateAccessory(Player player, bool hideVisual)
         { 
@@ -44,8 +44,7 @@ namespace CalamitySouls.Ench
             recipe.AddIngredient(ModContent.ItemType<CalamityMod.Items.Weapons.Melee.XerocsGreatsword>());
             recipe.AddIngredient(ModContent.ItemType<CalamityMod.Items.Weapons.Ranged.TheEmpyrean>());
             recipe.AddIngredient(ModContent.ItemType<CalamityMod.Items.Weapons.Magic.TomeofFates>());
-            recipe.AddIngredient(ModContent.ItemType<CalamityMod.Items.Weapons.Summon.LanternoftheSoul>());
-            recipe.AddIngredient(ModContent.ItemType<CalamityMod.Items.Weapons.Rogue.XerocPitchfork>());
+            recipe.AddIngredient(ModContent.ItemType<CalamityMod.Items.Weapons.Rogue.XerocPitchfork>(), 300);
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);
             recipe.AddRecipe();

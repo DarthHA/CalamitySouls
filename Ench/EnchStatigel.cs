@@ -23,14 +23,14 @@ namespace CalamitySouls.Ench
                 QuickModiLine(ref tooltips, 1, CSUtils.GetModItemText(ModContent.ItemType<CalamityMod.Items.Armor.StatigelArmor>(), color) +
                     "召唤迷你史莱姆之神为你而战，增加30%跳跃速度，无敌时间延长");
                 QuickModiLine(ref tooltips, 2, CSUtils.GetModItemText(item.type, color) +
-                    "按" + teleport + "键让核心附体，增加5防御、5%免伤和5生命回复");
+                    "按" + teleport + "键让核心转化为防御状态，索敌范围大大降低但是速度大大增加");
                 return;
             }
             QuickModiLine(ref tooltips, 0, "「Spirit of the legendary ninja」");
             QuickModiLine(ref tooltips, 1, CSUtils.GetModItemText(ModContent.ItemType<CalamityMod.Items.Armor.StatigelArmor>(), color) +
-                "Summons two mini slime god to fight for you, +5 jump height, +30% jump speed and increased immunity frame");
+                "Summons a mini slime god to fight for you, +5 jump height, +30% jump speed and increased immunity frame");
             QuickModiLine(ref tooltips, 2, CSUtils.GetModItemText(item.type, color) +
-                "Press "+teleport+" to let the Core be with you for 5 defense, 5% DR and 5 life regen");
+                "Press "+teleport+" to let the Core transform into defensive mode, lower search range but higher speed");
         }
         public override void SetEnchDefaults()
         {

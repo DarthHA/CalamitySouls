@@ -23,7 +23,7 @@ namespace CalamitySouls.Force
                 QuickModiLine(ref tooltips, ref nextLine, CSUtils.GetModItemText(ModContent.ItemType<EnchVictide>(), "CC4235") +
                     "消除水的阻力，无限时长阿米迪亚斯的祝福，增加7%攻速和7回血");
                 QuickModiLine(ref tooltips, ref nextLine, CSUtils.GetModItemText(ModContent.ItemType<EnchSulphurous>(), "A89254") +
-                    "屁二段跳，冲刺，+24%跳跃速度，减少硫磺海水的伤害");
+                    "冲刺，+24%跳跃速度");
                 QuickModiLine(ref tooltips, ref nextLine, CSUtils.GetModItemText(ModContent.ItemType<EnchMollusk>(), "7FFFFD") +
                     "贝壳对你友好，增加10%暴击");
                 QuickModiLine(ref tooltips, ref nextLine, CSUtils.GetModItemText(ModContent.ItemType<EnchTitan>(), "7B6382") +
@@ -31,7 +31,7 @@ namespace CalamitySouls.Force
                 QuickModiLine(ref tooltips, ref nextLine, CSUtils.GetModItemText(ModContent.ItemType<EnchReaver>(), "91CB66") +
                     "击中敌人产生大量孢子云，攻击造成脓血、咒火和剧毒");
                 QuickModiLine(ref tooltips, ref nextLine, CSUtils.GetModItemText(ModContent.ItemType<EnchFathom>(), "63A0A4") +
-                    "+10%召唤伤害，+1召唤栏，召唤一个围着你转圈摧毁敌对弹幕的小鱼");
+                    "+10%伤害，+1召唤栏，召唤一个围着你转圈摧毁敌对弹幕的小鱼");
                 QuickModiLine(ref tooltips, ref nextLine, CSUtils.GetModItemText(ModContent.ItemType<EnchOmega>(), "4887CD") +
                     "触手会汲取敌人生命治疗你，你常驻深渊狂乱状态");
                 return;
@@ -48,7 +48,7 @@ namespace CalamitySouls.Force
             QuickModiLine(ref tooltips, ref nextLine, CSUtils.GetModItemText(ModContent.ItemType<EnchReaver>(), "91CB66") +
                 "Enermy hit spawn plenty of spore clouds, attacks inflict ichor, cursed inferno and venom");
             QuickModiLine(ref tooltips, ref nextLine, CSUtils.GetModItemText(ModContent.ItemType<EnchFathom>(), "63A0A4") +
-                "+10% minion damage, +1 max minion, Spawn a fathom fish which circles around you destroying hostile projectiles");
+                "+10% damage, +1 max minion, Spawn a fathom fish which circles around you destroying hostile projectiles");
             QuickModiLine(ref tooltips, ref nextLine, CSUtils.GetModItemText(ModContent.ItemType<EnchOmega>(), "4887CD") +
                 "Tentacles heal you by sucking enemy life and you always have abyssal madness activated");
         }
@@ -71,6 +71,7 @@ namespace CalamitySouls.Force
             recipe.AddIngredient(ModContent.ItemType<EnchReaver>());
             recipe.AddIngredient(ModContent.ItemType<EnchFathom>());
             recipe.AddIngredient(ModContent.ItemType<EnchOmega>());
+            recipe.AddIngredient(ModContent.ItemType<CalamityMod.Items.Materials.CosmiliteBar>(), 20);
             recipe.AddTile(TileID.LunarCraftingStation);
             recipe.SetResult(this);
             recipe.AddRecipe();

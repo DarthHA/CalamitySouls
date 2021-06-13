@@ -20,7 +20,7 @@ namespace CalamitySouls.Ench
             {
                 QuickModiLine(ref tooltips, 0, "「愿群星指引你的前路。」");
                 QuickModiLine(ref tooltips, 1, CSUtils.GetModItemText(ModContent.ItemType<CalamityMod.Items.Armor.AstralBreastplate>(), color) +
-                    "获得勘探、狩猎和危险感药水的效果，小幅度增加各种属性");
+                    "获得勘探、狩猎和危险感药水的效果，大幅度增加各种属性");
                 QuickModiLine(ref tooltips, 2, CSUtils.GetModItemText(item.type, color) +
                     "半血的时候获得四秒无敌，之后聚集能量，回复满血，攻速召唤栏炮台栏和生命上限都加倍");
                 QuickModiLine(ref tooltips, 3, CSUtils.GetModItemText(item.type, color) +
@@ -29,7 +29,7 @@ namespace CalamitySouls.Ench
             }
             QuickModiLine(ref tooltips, 0, "「May the stars guide your way.」");
             QuickModiLine(ref tooltips, 1, CSUtils.GetModItemText(ModContent.ItemType<CalamityMod.Items.Armor.AstralBreastplate>(), color) +
-                "Spenkular, Hunter and Dangersense effect, minor increase on many stats");
+                "Spenkular, Hunter and Dangersense effect, major increase on many stats");
             QuickModiLine(ref tooltips, 2, CSUtils.GetModItemText(item.type, color) +
                 "Grant 4s inmmunity under half life, then return to full health and grant doubled fire rate, minion slots and max hp");
             QuickModiLine(ref tooltips, 3, CSUtils.GetModItemText(item.type, color) +
@@ -37,8 +37,8 @@ namespace CalamitySouls.Ench
         }
         public override void SetEnchDefaults()
         {
-            item.defense += 5;
-            item.lifeRegen += 5;
+            item.defense += 10;
+            item.lifeRegen += 10;
         }
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
@@ -55,7 +55,6 @@ namespace CalamitySouls.Ench
             recipe.AddIngredient(ModContent.ItemType<CalamityMod.Items.Weapons.Ranged.AstralRepeater>());
             recipe.AddIngredient(ModContent.ItemType<CalamityMod.Items.Weapons.Ranged.AstralBlaster>());
             recipe.AddIngredient(ModContent.ItemType<CalamityMod.Items.Weapons.Magic.AstralStaff>());
-            recipe.AddIngredient(ModContent.ItemType<CalamityMod.Items.Weapons.Rogue.RadiantStar>());
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);
             recipe.AddRecipe();

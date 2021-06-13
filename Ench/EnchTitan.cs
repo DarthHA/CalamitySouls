@@ -23,18 +23,18 @@ namespace CalamitySouls.Ench
                 QuickModiLine(ref tooltips, 1, CSUtils.GetModItemText(ModContent.ItemType<CalamityMod.Items.Armor.TitanHeartMantle>(), color) +
                     "增加300%击退和8%伤害");
                 QuickModiLine(ref tooltips, 2, CSUtils.GetModItemText(item.type, color) +
-                    "按" + hotkey + "激活泰坦之力，增加75%伤害");
+                    "按" + hotkey + "激活泰坦之力，你对敌人多造成22%伤害");
                 QuickModiLine(ref tooltips, 3, CSUtils.GetModItemText(item.type, color) +
-                    "代价？你的攻速和召唤栏减半，还不够吗？");
+                    "代价？你的攻速和召唤栏减少35%，还不够吗？");
                 return;
             }
             QuickModiLine(ref tooltips, 0, "「POWER!...And what, Terrarian, must we give in return?」");
             QuickModiLine(ref tooltips, 1, CSUtils.GetModItemText(ModContent.ItemType<CalamityMod.Items.Armor.TitanHeartMantle>(), color) +
                 "+300% knockback, +8% damage");
             QuickModiLine(ref tooltips, 2, CSUtils.GetModItemText(item.type, color) +
-                "Press " + hotkey + " to activate Titan Power, increase 75% damage");
+                "Press " + hotkey + " to activate Titan Power, you deal 22% more damage");
             QuickModiLine(ref tooltips, 3, CSUtils.GetModItemText(item.type, color) +
-                "The price? You'll get halved attack speed and max minions. isn't it enough?");
+                "The price? You'll get 35% less attack speed and max minions. isn't it enough?");
         }
         public override void SetEnchDefaults()
         {

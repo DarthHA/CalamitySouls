@@ -27,7 +27,7 @@ namespace CalamitySouls.Force
                 QuickModiLine(ref tooltips, ref nextLine, CSUtils.GetModItemText(ModContent.ItemType<EnchBrimflame>(), "E34F4F") +
                     "免疫大多数火系列减益，按" + hotkey + "开启硫火暴乱效果，期间你多造成25%伤害");
                 QuickModiLine(ref tooltips, ref nextLine, CSUtils.GetModItemText(ModContent.ItemType<EnchUmbraphile>(), "ED7112") +
-                    "获得不可检测增益，在没有boss存活时使所有生物变得友好");
+                    "获得不可检测增益，在没有boss存活时使所有生物变得友好，增加15%武器使用速度");
                 QuickModiLine(ref tooltips, ref nextLine, CSUtils.GetModItemText(ModContent.ItemType<EnchHydrothermic>(), "E06C1D") +
                     "死亡时以10血复活，该能力冷却为120秒");
                 QuickModiLine(ref tooltips, ref nextLine, CSUtils.GetModItemText(ModContent.ItemType<EnchEmpyrean>(), "9CFFEE") +
@@ -44,7 +44,7 @@ namespace CalamitySouls.Force
             QuickModiLine(ref tooltips, ref nextLine, CSUtils.GetModItemText(ModContent.ItemType<EnchBrimflame>(), "E34F4F") +
                 "Immnue to most fire-relative debuffs, Press " + hotkey + " to trigger a brimflame frenzy effect, during which you deal 25% more damage");
             QuickModiLine(ref tooltips, ref nextLine, CSUtils.GetModItemText(ModContent.ItemType<EnchUmbraphile>(), "ED7112") +
-                "You grant Undetected buff, which makes all creatures friendly while no boss is alive");
+                "You grant Undetected buff, which makes all creatures friendly while no boss is alive, +15% weapon fire rate");
             QuickModiLine(ref tooltips, ref nextLine, CSUtils.GetModItemText(ModContent.ItemType<EnchHydrothermic>(), "E06C1D") +
                 "You revive at 10 hp when dead which have a 120s cooldown");
             QuickModiLine(ref tooltips, ref nextLine, CSUtils.GetModItemText(ModContent.ItemType<EnchEmpyrean>(), "9CFFEE") +
@@ -72,6 +72,7 @@ namespace CalamitySouls.Force
             recipe.AddIngredient(ModContent.ItemType<EnchEmpyrean>());
             recipe.AddIngredient(ModContent.ItemType<EnchBloodflare>());
             recipe.AddIngredient(ModContent.ItemType<EnchFearmonger>());
+            recipe.AddIngredient(ModContent.ItemType<CalamityMod.Items.Materials.DarksunFragment>(), 20);
             recipe.AddTile(TileID.LunarCraftingStation);
             recipe.SetResult(this);
             recipe.AddRecipe();

@@ -27,7 +27,7 @@ namespace CalamitySouls.Ench
                     "免疫瘟疫，攻击造成瘟疫，移除敌人的瘟疫免疫，并加强瘟疫debuff的效果");
                 return;
             }
-            QuickModiLine(ref tooltips, 0, "「You feel like a lighthouse.」");
+            QuickModiLine(ref tooltips, 0, "「You feel you're glowing」");
             QuickModiLine(ref tooltips, 1, CSUtils.GetModItemText(ModContent.ItemType<CalamityMod.Items.Armor.PlaguebringerCarapace>(), color) +
                 "Grants a plague dash to ram enemies and you spawn bees while sprinting or dashing ");
             QuickModiLine(ref tooltips, 2, CSUtils.GetModItemText(ModContent.ItemType<CalamityMod.Items.Armor.PlaguebringerCarapace>(), color) +

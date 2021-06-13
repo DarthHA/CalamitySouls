@@ -2,6 +2,7 @@
 using Terraria.ModLoader;
 using System.Collections.Generic;
 using Terraria.ID;
+using CalamitySouls.Items;
 
 namespace CalamitySouls.Ench
 {
@@ -45,11 +46,11 @@ namespace CalamitySouls.Ench
             recipe.AddIngredient(ModContent.ItemType<CalamityMod.Items.Armor.SnowRuffianMask>());
             recipe.AddIngredient(ModContent.ItemType<CalamityMod.Items.Armor.SnowRuffianChestplate>());
             recipe.AddIngredient(ModContent.ItemType<CalamityMod.Items.Armor.SnowRuffianGreaves>());
-            recipe.AddIngredient(ItemID.IceBlade);
-            recipe.AddIngredient(ItemID.SnowballCannon);
+            recipe.AddIngredient(ModContent.ItemType<FrostPaintgun>());
+            recipe.AddIngredient(ModContent.ItemType<CalamityMod.Items.Weapons.Magic.IcicleStaff>());
             recipe.AddIngredient(ModContent.ItemType<CalamityMod.Items.Weapons.Magic.FrostBolt>());
             recipe.AddIngredient(ModContent.ItemType<CalamityMod.Items.Weapons.Summon.FrostBlossomStaff>());
-            recipe.AddIngredient(ItemID.IceBoomerang);
+            recipe.AddIngredient(ModContent.ItemType<IcicleDagger>(),1000);
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);
             recipe.AddRecipe();

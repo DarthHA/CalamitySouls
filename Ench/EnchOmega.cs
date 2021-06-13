@@ -41,13 +41,12 @@ namespace CalamitySouls.Ench
             recipe.AddIngredient(ModContent.ItemType<CalamityMod.Items.Armor.OmegaBlueHelmet>());
             recipe.AddIngredient(ModContent.ItemType<CalamityMod.Items.Armor.OmegaBlueChestplate>());
             recipe.AddIngredient(ModContent.ItemType<CalamityMod.Items.Armor.OmegaBlueLeggings>());
-            recipe.AddIngredient(ModContent.ItemType<CalamityMod.Items.Weapons.Melee.GalileoGladius>());
+            recipe.AddIngredient(ModContent.ItemType<CalamityMod.Items.Weapons.Melee.SoulEdge>());
             recipe.AddIngredient(ModContent.ItemType<CalamityMod.Items.Weapons.Melee.CrescentMoon>());
-            recipe.AddIngredient(ModContent.ItemType<CalamityMod.Items.Weapons.Ranged.HalleysInferno>());
             recipe.AddIngredient(ModContent.ItemType<CalamityMod.Items.Weapons.Magic.ClamorNoctus>());
             recipe.AddIngredient(ModContent.ItemType<CalamityMod.Items.Weapons.Magic.StratusSphere>());
-            recipe.AddIngredient(ModContent.ItemType<CalamityMod.Items.Weapons.Summon.Sirius>());
-            recipe.AddIngredient(ModContent.ItemType<CalamityMod.Items.Weapons.Rogue.NightsGaze>());
+            recipe.AddIngredient(ModContent.ItemType<CalamityMod.Items.Weapons.Summon.CalamarisLament>());
+            recipe.AddIngredient(ModContent.ItemType<CalamityMod.Items.Weapons.Rogue.Valediction>());
             recipe.AddIngredient(ModContent.ItemType<CalamityMod.Items.Weapons.Rogue.JawsOfOblivion>());
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);

@@ -20,7 +20,7 @@ namespace CalamitySouls.Ench
             string color = "C29151";
             if (CSUtils.GameCultureChinese)
             {
-                QuickModiLine(ref tooltips, 0, "「让沙暴为你开路。」");
+                QuickModiLine(ref tooltips, 0, "「面对沙暴吧。」");
                 QuickModiLine(ref tooltips, 1, CSUtils.GetModItemText(ModContent.ItemType<CalamityMod.Items.Armor.DesertProwlerShirt>(), color) +
                     "攻击获得额外5伤害（不受加成），有很小几率召唤沙龙卷");
                 QuickModiLine(ref tooltips, 2, CSUtils.GetModItemText(item.type, color) +
@@ -29,7 +29,7 @@ namespace CalamitySouls.Ench
                     "站立而且不使用物品超过5s后，你获得一次会将你吹上天的沙暴闪避，此效果有60s冷却");
                 return;
             }
-            QuickModiLine(ref tooltips, 0, "「Now sandstorm lead your way」");
+            QuickModiLine(ref tooltips, 0, "「Now face the sandstorm」");
             QuickModiLine(ref tooltips, 1, CSUtils.GetModItemText(ModContent.ItemType<CalamityMod.Items.Armor.DesertProwlerShirt>(), color) +
                 "Attacks deal an extra 5 flat damage and can rarely whip up a sandstorm");
             QuickModiLine(ref tooltips, 2, CSUtils.GetModItemText(item.type, color) +
@@ -47,11 +47,11 @@ namespace CalamitySouls.Ench
             recipe.AddIngredient(ModContent.ItemType<CalamityMod.Items.Armor.DesertProwlerHat>());
             recipe.AddIngredient(ModContent.ItemType<CalamityMod.Items.Armor.DesertProwlerShirt>());
             recipe.AddIngredient(ModContent.ItemType<CalamityMod.Items.Armor.DesertProwlerPants>());
+            recipe.AddIngredient(ModContent.ItemType<CalamityMod.Items.Weapons.Melee.MandibleClaws>());
             recipe.AddIngredient(ModContent.ItemType<CalamityMod.Items.Weapons.Melee.BurntSienna>());
             recipe.AddIngredient(ModContent.ItemType<CalamityMod.Items.Weapons.Ranged.MandibleBow>());
-            recipe.AddIngredient(ItemID.AmberStaff);
             recipe.AddIngredient(ModContent.ItemType<CalamityMod.Items.Weapons.Summon.StormjawStaff>());
-            recipe.AddIngredient(ItemID.BoneDagger, 400);
+            recipe.AddIngredient(ModContent.ItemType<CalamityMod.Items.Weapons.Rogue.NastyCholla>(), 150);
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);
             recipe.AddRecipe();

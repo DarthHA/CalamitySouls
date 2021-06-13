@@ -24,7 +24,7 @@ namespace CalamitySouls.Force
                 QuickModiLine(ref tooltips, ref nextLine, CSUtils.GetModItemText(ModContent.ItemType<EnchGodslayerAncient>(), "5F21A0") +
                     "增加21%伤害，加倍加速度，非boss战中加倍移速");
                 QuickModiLine(ref tooltips, ref nextLine, CSUtils.GetModItemText(ModContent.ItemType<EnchGodslayer>(), "FC6DCA") +
-                    "你获得冷却只有30秒的弑神者复活效果，你的攻击会生成弑神者幻影");
+                    "你获得冷却只有30秒的弑神者复活效果，你每隔一段时间获得不同的增益");
                 QuickModiLine(ref tooltips, ref nextLine, CSUtils.GetModItemText(ModContent.ItemType<EnchAuric>(), "7BCDED") +
                     "金源复活效果，免疫孱弱巫咒，升级金源魔石那五把武器");
                 QuickModiLine(ref tooltips, ref nextLine, CSUtils.GetModItemText(ModContent.ItemType<EnchDemonshade>(), "FF1910") +
@@ -35,7 +35,7 @@ namespace CalamitySouls.Force
             QuickModiLine(ref tooltips, ref nextLine, CSUtils.GetModItemText(ModContent.ItemType<EnchGodslayerAncient>(), "5F21A0") +
                 "+21% damage, your acceleration is doubled, while no boss is alive your speed is also doubled");
             QuickModiLine(ref tooltips, ref nextLine, CSUtils.GetModItemText(ModContent.ItemType<EnchGodslayer>(), "FC6DCA") +
-                "You are granted godslayer revive effect with only 30s cooldown and your attack will summon god slayer phantoms");
+                "You are granted godslayer revive effect with only 30s cooldown, you gain different bonus over time");
             QuickModiLine(ref tooltips, ref nextLine, CSUtils.GetModItemText(ModContent.ItemType<EnchAuric>(), "7BCDED") +
                 "Auric revive effect, immunity to Vulnerable Hex, upgrade the 5 weapons Auric enchant upgraded");
             QuickModiLine(ref tooltips, ref nextLine, CSUtils.GetModItemText(ModContent.ItemType<EnchDemonshade>(), "FF1910") +
@@ -56,6 +56,7 @@ namespace CalamitySouls.Force
             recipe.AddIngredient(ModContent.ItemType<EnchGodslayer>());
             recipe.AddIngredient(ModContent.ItemType<EnchAuric>());
             recipe.AddIngredient(ModContent.ItemType<EnchDemonshade>());
+            recipe.AddIngredient(ModContent.ItemType<CalamityMod.Items.Rock>());
             recipe.AddTile(TileID.LunarCraftingStation);
             recipe.SetResult(this);
             recipe.AddRecipe();
