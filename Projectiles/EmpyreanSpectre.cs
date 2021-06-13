@@ -239,7 +239,7 @@ namespace CalamitySouls.Projectiles
                                 {
                                     if (ShootCD == 0 && player.whoAmI == Main.myPlayer)
                                     {
-                                        Vector2 velo = Vector2.Normalize(projectile.DirectionTo(npc.Center) * 4f + CSUtils.RandomRotate()) * 17f;
+                                        Vector2 velo = Vector2.Normalize(projectile.DirectionTo(npc.Center) * 4f + CSUtils.RandomRotate) * 17f;
                                         float rLerp = Main.rand.Next(10, 160) * 0.001f;
                                         if (Main.rand.Next(2) == 0) rLerp *= -1f;
                                         float rDir = Main.rand.Next(10, 160) * 0.001f;
@@ -303,8 +303,9 @@ namespace CalamitySouls.Projectiles
                                 {
                                     if (ShootCD == 0 && player.whoAmI == Main.myPlayer)
                                     {
-                                        Projectile.NewProjectile(projectile.Center, projectile.DirectionTo(npc.Center) * 20F, ProjectileType<DestructionStar>(),
-                                            (int)(75 * player.RogueDamage()), 10f, player.whoAmI);
+                                        Projectile disk = Projectile.NewProjectileDirect(projectile.Center, projectile.DirectionTo(npc.Center) * 20F,
+                                            ProjectileType<DestructionStar>(), (int)(750 * player.RogueDamage()), 10f, player.whoAmI);
+                                        disk.penetrate = 1;
                                         ShootCD = 30;
                                     }
                                 }

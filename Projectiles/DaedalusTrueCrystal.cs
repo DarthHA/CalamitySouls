@@ -147,14 +147,14 @@ namespace CalamitySouls.Projectiles
                     if (item.melee && item.pick <= 0 && item.axe <= 0 && item.hammer <= 0)
                     {
                         projectile.Melee();
-                        projectile.FollowPlayer(target.Center, 1600f, 64f, projectile.DirectionTo(target.Center) * 50f, 20f);
+                        projectile.FollowPlayer(target.Center, 1600f, 64f, projectile.DirectionTo(target.Center) * 50f, 30f);
                         if (ai1 > 5)
                         {
                             ai1 = 0;
                             if (CSUtils.GoodNetMode)
                             {
                                 Projectile beam = Projectile.NewProjectileDirect(projectile.Center, projectile.velocity, ProjectileID.FrostBoltSword,
-                                    (int)(30f * player.MeleeDamage()), 12f, player.whoAmI);
+                                    (int)(54f * player.MeleeDamage()), 12f, player.whoAmI);
                                 beam.penetrate = 1; beam.timeLeft = 60; beam.tileCollide = false;
                             }
                         }
@@ -185,7 +185,7 @@ namespace CalamitySouls.Projectiles
                                     Vector2 vel = target.Center + target.velocity * 15f - pos; vel.SafeNormalize(Vector2.UnitY);
                                     Projectile arrow = Projectile.NewProjectileDirect(pos, vel * 20f,
                                              ModContent.ProjectileType<CalamityMod.Projectiles.Ranged.IcicleArrowProj>(),
-                                             (int)(25f * player.RangedDamage()), 12f, player.whoAmI);
+                                             (int)(45f * player.RangedDamage()), 12f, player.whoAmI);
                                     arrow.extraUpdates = 2;
                                 }
                             }
@@ -208,7 +208,7 @@ namespace CalamitySouls.Projectiles
                                 ModContent.ProjectileType<CalamityMod.Projectiles.Magic.MagnusBeam>(),
                                 });
                                 Projectile lunic = Projectile.NewProjectileDirect(projectile.Center, projectile.DirectionTo(target.Center) * 16f, type,
-                                    (int)(50f * player.MagicDamage()), 12f, player.whoAmI);
+                                    (int)(90f * player.MagicDamage()), 12f, player.whoAmI);
                                 lunic.tileCollide = false; lunic.Magic();
                             }
                         }
@@ -231,7 +231,7 @@ namespace CalamitySouls.Projectiles
                             {
                                 Projectile.NewProjectile(projectile.Center, projectile.DirectionTo(target.Center + target.velocity * 10f) * 24f,
                                     ModContent.ProjectileType<CalamityMod.Projectiles.Summon.DaedalusCrystalShot>(),
-                                   (int)(90f * player.MinionDamage()), 12f, player.whoAmI);
+                                   (int)(162 * player.MinionDamage()), 12f, player.whoAmI);
                             }
                         }
                     }
@@ -257,10 +257,11 @@ namespace CalamitySouls.Projectiles
                             }
                             projectile.velocity -= dir * 30f;
                             if (CSUtils.GoodNetMode)
-                                for (int i = 0; i < 20; i++)
+                                for (int i = 0; i < 8; i++)
                                 {
-                                    Projectile star = Projectile.NewProjectileDirect(projectile.Center + dir * 64f * i, dir * 0.1f,
-                                        ModContent.ProjectileType<CalamityMod.Projectiles.Typeless.KelvinCatalystStar>(), (int)(17f * player.RogueDamage()), 12f, player.whoAmI);
+                                    Vector2 rot2 = MathHelper.ToRadians(360 * i / 8).ToRotationVector2();
+                                    Projectile star = Projectile.NewProjectileDirect(projectile.Center + rot2 * 48f, rot2 * 4f,
+                                        ModContent.ProjectileType<CalamityMod.Projectiles.Typeless.KelvinCatalystStar>(), (int)(35f * player.RogueDamage()), 12f, player.whoAmI);
                                     star.Rogue(); star.tileCollide = false;
                                 }
                         }
@@ -272,7 +273,7 @@ namespace CalamitySouls.Projectiles
             else attack = false;
             if (!attack)
             {
-                projectile.Classless();
+                projectile.Classless(true);
                 projectile.FollowPlayer(player.Center, 1600f, 1f, player.velocity, 1f, true, 0.05f, 0.07f, 0.3f);
             }
             float rot = System.Math.Sign((int)projectile.velocity.X) * 0.5f;

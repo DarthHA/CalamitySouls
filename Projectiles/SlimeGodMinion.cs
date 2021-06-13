@@ -46,34 +46,38 @@ namespace CalamitySouls.Projectiles
             {
                 projectile.GetItemDamageType(player.inventory[player.selectedItem]);
             }
+            int index = -1;
+            float minDist = 480f;
+            float maxDist = 800f;
+            float acc1 = 0.97f;
+            float acc2 = 1.6f;
+            bool ignoreImmunity = false;
             if (player.CS().StatigelTeleport)
             {
-                projectile.Center = Vector2.Lerp(projectile.Center, player.Center, 0.5f);
-                projectile.velocity = Vector2.Lerp(projectile.velocity, player.velocity, 0.3f);
+                minDist = 120f;
+                maxDist = 160f;
+                acc1 = 0f;
+                acc2 = 16f;
             }
+            if (player.HasMinionAttackTargetNPC && Main.npc[player.MinionAttackTargetNPC].Distance(player.Center) < maxDist) index = player.MinionAttackTargetNPC;
             else
             {
-                int index = -1;
-                float minDist = 480f;
-                if (player.HasMinionAttackTargetNPC) index = player.MinionAttackTargetNPC;
-                else
+                for (int i = 0; i < Main.npc.Length; i++)
                 {
-                    for (int i = 0; i < Main.npc.Length; i++)
+                    NPC npc = Main.npc[i];
+                    if (npc.active && (npc.CanBeChasedBy(projectile) || ignoreImmunity) && !npc.dontTakeDamage
+                        && !npc.friendly && npc.Distance(projectile.Center) < minDist && npc.Distance(player.Center) < maxDist) 
                     {
-                        NPC npc = Main.npc[i];
-                        if (npc.active && npc.CanBeChasedBy(projectile) && !npc.friendly && npc.Distance(projectile.Center) < minDist && npc.Distance(player.Center) < 800f) 
-                        {
-                            index = i;
-                            minDist = npc.Distance(projectile.Center);
-                        }
+                        index = i;
+                        minDist = npc.Distance(projectile.Center);
                     }
                 }
-                Vector2 iCenter = player.Center;
-                if (index != -1) iCenter = Main.npc[index].Center;
-                projectile.velocity *= 0.97f;
-                projectile.velocity += projectile.DirectionTo(iCenter) * 1.6f;
-                if (projectile.Distance(player.Center) > 800f) projectile.Center = player.Center + player.DirectionTo(projectile.Center) * 800f;
             }
+            Vector2 iCenter = player.Center;
+            if (index != -1) iCenter = Main.npc[index].Center;
+            projectile.velocity *= acc1;
+            projectile.velocity += projectile.DirectionTo(iCenter) * acc2;
+            if (projectile.Distance(player.Center) > maxDist) projectile.Center = player.Center + player.DirectionTo(projectile.Center) * maxDist;
             projectile.rotation += MathHelper.Clamp(projectile.velocity.X, -0.1f, 0.1f);
         }
         public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)

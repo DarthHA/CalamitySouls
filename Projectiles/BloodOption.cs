@@ -47,6 +47,8 @@ namespace CalamitySouls.Projectiles
             projectile.timeLeft = 900;
             projectile.Center = player.Center + MathHelper.ToRadians(projectile.ai[1] * 3).ToRotationVector2() * 64f;
             projectile.ai[1] += 1f;
+            if (projectile.ai[0] == 0)
+            {
             int index = -1;
             float dist = 1000f;
             for (int i = 0; i < Main.npc.Length; i++)
@@ -58,22 +60,19 @@ namespace CalamitySouls.Projectiles
                     index = i;
                 }
             }
-            if (index != -1 && player.miscCounter % 12 == 0)
+            if (index != -1 && player.miscCounter % 30 == 0)
             {
                 NPC target = Main.npc[index];
                 if (player.whoAmI == Main.myPlayer)
                 {
-                    Dust dust = Dust.NewDustDirect(target.position, target.width, target.height, 235);
-                    Projectile drain = Projectile.NewProjectileDirect(target.Center, Vector2.Zero, ProjectileID.SoulDrain, 100, 0f, player.whoAmI);
+                    Projectile drain = Projectile.NewProjectileDirect(target.Center, Vector2.Zero, ProjectileID.SoulDrain, 500, 0f, player.whoAmI);
                     drain.usesLocalNPCImmunity = true;
                     drain.localNPCHitCooldown = 0;
                     drain.penetrate = 1;
-                    drain.Classless();
+                    drain.Classless(true);
                 }
-                player.HealLife(Main.rand.Next(1, 4));
+                player.HealLife(5);
             }
-            if (projectile.ai[0] == 0)
-            {
                 projectile.alpha = 0;
                 Dust dust = Dust.NewDustDirect(projectile.position, projectile.width, projectile.height, 180);
                 dust.velocity *= 0f;

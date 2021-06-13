@@ -33,9 +33,9 @@ namespace CalamitySouls.Projectiles
             }
             for (int i = 0; i < Main.projectile.Length; i++)
             {
-                Projectile projectile = Main.projectile[i];
-                if (projectile.active && projectile.Distance(projectile.Center) < 500f)
-                    projectile.position -= projectile.velocity;
+                Projectile proj = Main.projectile[i];
+                if (proj.active && proj.Hitbox.Distance(projectile.Center) < 500f)
+                    proj.position -= proj.velocity * (1 + proj.extraUpdates);
             }
             for (int i = 0; i < Main.npc.Length; i++)
             {

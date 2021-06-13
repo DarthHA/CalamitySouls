@@ -47,7 +47,7 @@ namespace CalamitySouls.Souls
         {
             item.width = 38;
             item.height = 46;
-            item.defense += 67;
+            item.defense += 72;
             item.lifeRegen += 21;
         }
         public override void UpdateAccessory(Player player, bool hideVisual)
@@ -67,6 +67,7 @@ namespace CalamitySouls.Souls
             recipe.AddIngredient(ModContent.ItemType<ForceRevolution>());
             recipe.AddIngredient(ModContent.ItemType<ForceTechnical>());
             recipe.AddIngredient(ModContent.ItemType<ForceTyranny>());
+            recipe.AddIngredient(ModContent.ItemType<CalamityMod.Items.Rock>(), 5);
             recipe.AddTile(ModContent.TileType<CalamityMod.Tiles.PlacedRock>());
             recipe.SetResult(this);
             recipe.AddRecipe();
