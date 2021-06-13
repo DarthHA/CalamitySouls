@@ -31,7 +31,7 @@ namespace CalamitySouls.Items
         {
             Item item2 = Main.LocalPlayer.inventory[Main.LocalPlayer.selectedItem];
             Projectile proj = Projectile.NewProjectileDirect(position, velocity,
-               type, damage * 100, 0f, Main.LocalPlayer.whoAmI);
+               type, damage, 0f, Main.LocalPlayer.whoAmI);
             if (!item2.IsAir) proj.GetItemDamageType(item2);
             return proj;
         }
@@ -89,7 +89,7 @@ namespace CalamitySouls.Items
         {
             if (player.whoAmI == Main.myPlayer)
             {
-                SpawnProj(ProjectileType<TarraEnergy>(), player.Center, player.DirectionTo(Main.MouseWorld) * 8.5f, 33);
+                SpawnProj(ProjectileType<TarraEnergy>(), player.Center, player.DirectionTo(Main.MouseWorld) * 8.5f, 20000);
             }
             return false;
         }
@@ -103,7 +103,7 @@ namespace CalamitySouls.Items
                 for (int i = 0; i < 15; i++)
                 {
                     Projectile explosion = SpawnProj(ProjectileID.CrystalLeafShot,
-                        player.Center + player.DirectionTo(Main.MouseWorld) * 64f*i, Vector2.Zero, 33);
+                        player.Center + player.DirectionTo(Main.MouseWorld) * 64f*i, Vector2.Zero, 8000);
                     explosion.timeLeft = 1;
                 }
             }
@@ -118,7 +118,7 @@ namespace CalamitySouls.Items
             {
                 for (int i = 0; i < 10; i++)
                 {
-                    SpawnProj(ProjectileID.Leaf, player.Center, player.DirectionTo(Main.MouseWorld).RotatedByRandom(0.1f) * 12f, 20);
+                    SpawnProj(ProjectileID.Leaf, player.Center, player.DirectionTo(Main.MouseWorld).RotatedByRandom(0.1f) * 12f, 500);
                 }
             }
             return false;
@@ -145,7 +145,7 @@ namespace CalamitySouls.Items
                     if (npc2.active && !npc2.friendly && !npc2.dontTakeDamage && Vector2.Distance(player.Center, npc2.Center) <= 300f)
                     {
                         Projectile.NewProjectileDirect(npc2.Center, Vector2.Zero, ProjectileType<DirectStrike>(),
-                            (int)(150f * player.AverageDamage()), 0f, player.whoAmI, k, 0f);
+                            3000, 0f, player.whoAmI, k, 0f);
                     }
                 }
             }
