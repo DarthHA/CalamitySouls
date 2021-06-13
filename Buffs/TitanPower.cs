@@ -9,9 +9,9 @@ namespace CalamitySouls.Buffs
         public override void SetDefaults()
         {
             DisplayName.SetDefault("Titan Power");
-            Description.SetDefault("POWER!\n+100% damage, +20% mult damage and +500% knockback\nHalves weapon fire rate and minion slots");
+            Description.SetDefault("POWER!\n+22% mult damage\nReduce weapon fire rate and minion slots by 35%");
             DisplayName.AddTranslation(GameCulture.Chinese, "泰坦之力");
-            Description.AddTranslation(GameCulture.Chinese, "抛瓦！\n+100%伤害, +20%敌人易伤和+500%击退\n减半武器使用速度和召唤栏。");
+            Description.AddTranslation(GameCulture.Chinese, "抛瓦！\n+22%敌人易伤\n减少35%武器使用速度和召唤栏。");
             Main.debuff[Type] = true;
             Main.buffNoTimeDisplay[Type] = true;
             Main.pvpBuff[Type] = true;
