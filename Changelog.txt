@@ -1,0 +1,39 @@
+1.0.1
+Introduced the mod.
+
+1.0.2
+-1: Added moveSpeed and acceleration bonus to some ench *temporarily* 'cause I haven't added move accs like soul of flying master
+-2: Remade some descriptions, like fixing grammar, adding explainations to things like "Chinese-only-memes" or replacing them with other stuff
+-3: Adjusted some datas of Manic mode, simplified some recipes
+-4: Fixed issues that you deal tons of damage to high-defense target like DG
+-5: Buffed umbra-fogot-the-name, daedalus, fathom, mollusk, plaguereaper, astral, ancientgodslayer ench
+-6: Nerfed empyrean, bloodflare ench
+-7: removed fart jump in creature force and added a "Portable Fart" post-leviathan&golem
+-8: Adjusted the period of forces by adding some materials, let's leave Champions later 'cause I have some EXTREMELY IMPORTANT exams
+-9: Added mini calamitas pet for forcetyranny and soulcalamity
+-10: Totally remake of Manic mode s∞n, connection to eternity mode s∞n
+-11: Added Fishron, Deus, cv to "Boss-that-must-nerf" list
+-12: Mark a bug that some enermies doesn't do any damage, I have no idea wtf is going on
+-13: Mark a bug that significantly boosted adrenaline damage, I killed DoG P2 in 6s! (tried to fix but dunno if I managed that)
+
+1.0.3
+-1: Figured out why you dont take damage and fixed sth
+-2: Fixed the bug that reduce enermies' damage taken by 50% instead of 30%, reduced enermy defense effectiveness to 1/4
+-3: Changed 5% crit damage boost of manic mode to 50% adrenaline damage boost
+-4: Fixed some tooltip bugs
+-5: Fixed a bug that moveSpeed boost is overpowered and reduced the amount boosted
+-6: Manic mode now speed up npc to *2.1AI speed, your defense block 50% damage instead of 75%, and becomes revenge-mode only
+-7: Fixed a bug that pReaper ench's infinite fly time work weirdly in defiled mode
+-8: Fixed bugs that you have tooooooooooooooooooons of extra projectiles
+-9: Nerfed Auric Enchantment Weapon Boost
+-10: Adjusted Bloodflare, Fearmonger, Titanheart Ench
+-11: Reworked Godslayer Ench
+-12: Buffed Empyrean, Tarragon Ench
+-13: Nerfed Daedalus, Sulprous, Statigel, GSA Ench
+-14: Manic mode nerfed before any boss is taken down when no boss is alive
+-15: Added 2 frost weapons, Stink Cushion, Seafrog Leg, Molten Necklace, Evil Treads, Sandshark Necklace, Godly Spike Necklace
+-16: Added some recipes to reduce your time wasted looting for a certain item
+-17: Fixed a bug that some boss separate incorrectly
+-18: Fixed a bug that rogue class grant *2 crit chance from all-crit sources
+-19: Moved Portable Fart to post-any-mech
+-20: Added Impurity Inside, Flawless Wind, Emotion Release, Prismatic Trail Toggler

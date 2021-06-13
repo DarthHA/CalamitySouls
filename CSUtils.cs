@@ -66,9 +66,12 @@ namespace CalamitySouls
             projectile.thrown =projectile.Calamity().rogue= true;
             projectile.ranged = projectile.magic = projectile.minion = projectile.melee = false;
         }
-        public static void Classless(this Projectile projectile)
+        public static bool Classless(this Projectile projectile, bool Do = false)
         {
+            bool CanDo = projectile.melee || projectile.ranged || projectile.magic || projectile.minion || projectile.thrown || projectile.Calamity().rogue;
+            if (Do) return !CanDo;
             projectile.melee = projectile.ranged = projectile.magic = projectile.minion = projectile.thrown = projectile.Calamity().rogue = false;
+            return CanDo;
         }
         public static void AllClass(this Projectile projectile)
         {
@@ -88,14 +91,12 @@ namespace CalamitySouls
             player.meleeCrit += add;
             player.rangedCrit += add;
             player.thrownCrit += add;
-            CalamityUtils.Calamity(player).throwingCrit += add;
             if (set)
             {
                 player.magicCrit = settle;
                 player.meleeCrit = settle;
                 player.rangedCrit = settle;
                 player.thrownCrit = settle;
-                CalamityUtils.Calamity(player).throwingCrit = settle;
             }
         }
         public static bool AnyBossAlive
@@ -181,7 +182,7 @@ namespace CalamitySouls
             List<string> keys = mhk.GetAssignedKeys(0);
             if (keys.Count == 0)
             {
-                return GameCultureChinese ? "[未设置，请在控件中设置该快捷键" : "[None yet, please set the key up in Control]";
+                return GameCultureChinese ? "[未设置，请在控件中设置该快捷键]" : "[None yet, please set the key up in Control]";
             }
             StringBuilder sb = new StringBuilder(16);
             sb.Append(keys[0]);
@@ -191,13 +192,12 @@ namespace CalamitySouls
             }
             return sb.ToString();
         }
-        public static bool IsAExtraProjectile(this Projectile projectile) => CSLists.ExtraProjectileList.Contains(projectile.type);
         public static void DoAVisualBuff(this Player player, int type, int time = 0)
         {
             player.ClearBuff(type);
             player.AddBuff(type, time + 2);
         }
-        public static Vector2 RandomRotate() => MathHelper.ToRadians(Main.rand.Next(360)).ToRotationVector2();
+        public static Vector2 RandomRotate => MathHelper.ToRadians(Main.rand.Next(360)).ToRotationVector2();
         public static int ownedProjectileCounts(this Player player,int type)
         {
             int amt = 0;
@@ -208,6 +208,21 @@ namespace CalamitySouls
             }
             return amt;
         }
+        public static bool IsAnExtraProj(this Projectile projectile)
+        {
+            return projectile.Classless(false) || CSLists.ExtraProjectileList.Contains(projectile.type);
+        }
+        public static int TransFloatToInt(float num)
+        {
+            int low = (int)num;
+            int chance = (int)((num - low) * 100);
+            if (Main.rand.Next(100) < chance) low++;
+            return low;
+        }
+        public static int GetOneOrNegativeOne => Main.rand.Next(2) * 2 - 1;
+        public static string ManicModeName => "Manic Mode";
+        public static string ManicModeNameChi => "欠抽模式";
+        public static bool ManicModeNerf => !AnyBossAlive && !CalamityMod.World.CalamityWorld.downedBossAny;
         public static string BlankTexture => "CalamitySouls/Extras/BlankTexture";
     }
 }

@@ -17,15 +17,18 @@ namespace CalamitySouls
             AuricReviveCooldown1 = 0;
             AuricReviveCooldown2 = 0;
             ImmunityTime = 0;
+
             AstralTimer = 0;
             BrimFrenzy = 0;
             BrimFrenzyVisualEffect = 0;
             BrimFrenzyCooldown = 0;
             DaedalusEvadeCooldown = 0;
-            GodslayerDogTimer = 0;
+            GodslayerBuffTimer = 0;
             GodslayerAncientOtherworldTimer = 0;
+            HydrothermicReviveCooldown = 0;
             SilvaRechargeCounter = 0;
             WulfrumShieldCooldown = 0;
+
             EffectsThatNeedtoReset();
         }
         public override void ResetEffects()
@@ -44,10 +47,14 @@ namespace CalamitySouls
             Frozen = false;
             WeaponKnockback = 1f;
             AllDamageByMult = 1f;
-            AdrenalineDamageBoost = 1f;
+            AdrenalineDamageBoost = 0f;
+            if (CSWorld.HyperMode) AdrenalineDamageBoost += 0.5f;
+            MyAccelerationMult = 1f;
+            MyMoveSpeedMult = 1f;
 
             cCVaccines = false;
             pPrism = false;
+            NoTrailPleaseEvenIfYouHaventDoneConfigPleaseDoSomethingToCloseTheTrail = false;
 
             CreatureSpore = false;
 
@@ -57,7 +64,7 @@ namespace CalamitySouls
             AuricHexNerf = false;
             AuricWeaponBoost = false;
             BloodCanOption = false;
-            player.statLifeMax2 -= (int)(player.statLifeMax2 * BloodOptionAmount / 10f);
+            player.statDefense -= 35 * BloodOptionAmount;
             BloodOptionAmount = 0;
             if (BrimFrenzy == 1)
             {
@@ -83,11 +90,13 @@ namespace CalamitySouls
             FearmongerCanArea = false;
             FearmongerCanMark = false;
             GodslayerPhantom = false;
-            if (GodslayerDog && GodslayerDogTimer > 0) GodslayerDogTimer--;
-            GodslayerDog = false;
+            if (!GodslayerBuff) GodslayerBuffTimer = 0;
+            GodslayerBuff = false;
+            GodslayerCrit = false;
             if (!GodslayerAncientCanOtherworld) GodslayerAncientOtherworldTimer = 0;
             GodslayerAncientCanOtherworld = false;
             GodslayerAncientOtherworld = false;
+            if (CanHydrothermicRevive && HydrothermicReviveCooldown > 0) HydrothermicReviveCooldown--;
             CanHydrothermicRevive = false;
             PlagueBringerPlague = false;
             PlagueReaperPlague = false;
@@ -142,6 +151,10 @@ namespace CalamitySouls
             EnchUmbraphile = false;
             EnchVictide = false;
             EnchWulfrum = false;
+
+            sgCore = false;
+
+            RotI = false;
         }
         #region TONs of effects
         public override void PostUpdateEquips()
@@ -194,7 +207,9 @@ namespace CalamitySouls
             if (ImmunityTime > 0) return false;
             if (CSWorld.HyperMode)
             {
-                damage = (int)(1.5f * damage);
+                customDamage = true;
+                damage = (int)(damage * 1.5f * (1 - player.endurance) - player.statDefense * 0.5f);
+                if (damage < 1.0f) damage = 1;
             }
             return CSPlayerEffects.PreHurt(player, pvp, quiet, ref damage, ref hitDirection, ref crit, ref customDamage, ref playSound, ref genGore, ref damageSource);
         }
@@ -249,8 +264,8 @@ namespace CalamitySouls
                 FearmongerAreaTimer = 30 * 60;
                 if (player.whoAmI == Main.myPlayer)
                 {
-               Projectile area=     Projectile.NewProjectileDirect(player.Center, Vector2.Zero,
-                      ProjectileType<FearmongerAreaProj>(), 0, 0f, player.whoAmI);
+                    Projectile area = Projectile.NewProjectileDirect(player.Center, Vector2.Zero,
+                           ProjectileType<FearmongerAreaProj>(), 0, 0f, player.whoAmI);
                     area.Center = player.Center;
                 }
             }
@@ -273,16 +288,9 @@ namespace CalamitySouls
                     if (index != -1)
                     {
                         FearmongerMark = index;
-                        FearmongerMarkCooldown = 45 * 60;
+                        FearmongerMarkCooldown = 15 * 60;
                     }
                 }
-            }
-            if (CalamitySouls.GodslayerKey.JustPressed && GodslayerDog && GodslayerDogTimer == 0)
-            {
-                if (player.whoAmI == Main.myPlayer)
-                    Projectile.NewProjectile(player.Center, player.DirectionTo(Main.MouseWorld) * 15.69f, ProjectileType<GodslayerDoGHead>(),
-                        10000, 6.9f, player.whoAmI);
-                GodslayerDogTimer = 70 * 60;
             }
             if (CanBrimFrenzy && BrimFrenzy == 0 && BrimFrenzyCooldown == 0 && CalamitySouls.BrimflameKey.JustPressed)
             {
@@ -301,9 +309,12 @@ namespace CalamitySouls
         public float WeaponKnockback;
         public float AllDamageByMult;
         public float AdrenalineDamageBoost;
+        public float MyAccelerationMult;
+        public float MyMoveSpeedMult;
 
         public bool cCVaccines;
         public bool pPrism;
+        public bool NoTrailPleaseEvenIfYouHaventDoneConfigPleaseDoSomethingToCloseTheTrail;
 
         public bool CreatureSpore;
         #region EnchEffect
@@ -339,8 +350,9 @@ namespace CalamitySouls
         public int FearmongerMark = -1;
         public int FearmongerMarkCooldown = 0;
         public bool GodslayerPhantom;
-        public bool GodslayerDog;
-        public int GodslayerDogTimer = 0;
+        public bool GodslayerBuff;
+        public int GodslayerBuffTimer = 0;
+        public bool GodslayerCrit;
         public bool GodslayerAncientCanOtherworld;
         public int GodslayerAncientOtherworldTimer = 0;
         public bool GodslayerAncientOtherworld;
@@ -406,6 +418,10 @@ namespace CalamitySouls
         public bool EnchUmbraphile;
         public bool EnchVictide;
         public bool EnchWulfrum;
-        #endregion 
+        #endregion
+        #region ManicOnlyAccessories
+        public bool sgCore;
+        #endregion
+        public bool RotI;
     }
 }

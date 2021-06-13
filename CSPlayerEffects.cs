@@ -27,7 +27,7 @@ namespace CalamitySouls
             if (mplayer.ForceTechnical)
             {
                 int shield = ProjectileType<WulfrumShield>();
-                if (player.ownedProjectileCounts(shield) < 1 && player.whoAmI == Main.myPlayer)
+                if (player.ownedProjectileCounts(shield) < 1 && player.whoAmI == Main.myPlayer && player.immuneTime < 1)
                     Projectile.NewProjectile(player.Center, Vector2.Zero, shield, 0, 0f, player.whoAmI);
 
                 mplayer.PlagueReaperPlague = true;
@@ -41,14 +41,14 @@ namespace CalamitySouls
                 player.findTreasure = true;
                 player.detectCreature = true;
                 player.dangerSense = true;
-                player.allDamage += 0.05f;
-                player.ModifyAllCrit(5);
-                player.manaCost -= 0.05f;
-                player.endurance += 0.05f;
-                mplayer.WeaponFireRateBoost += 0.05f;
-                player.slotsMinions += 0.5f;
+                player.allDamage += 0.1f;
+                player.ModifyAllCrit(10);
+                player.manaCost -= 0.1f;
+                player.endurance += 0.1f;
+                mplayer.WeaponFireRateBoost += 0.1f;
+                player.slotsMinions += 1f;
                 player.maxTurrets += 1;
-                player.statLifeMax2 += 20;
+                player.statLifeMax2 += 10;
 
                 mplayer.pPrism = true;
                 mplayer.PrismaticTrail = true;
@@ -58,7 +58,6 @@ namespace CalamitySouls
                 mplayer.WeaponFireRateBoost += 0.07f;
                 player.AddBuff(BuffType<CalamityMod.Buffs.StatBuffs.AmidiasBlessing>(), 2);
 
-                player.doubleJumpFart = true;
                 if (cplayer.dashMod < 1) cplayer.dashMod = 1;
                 player.jumpBoost = true;
                 player.jumpSpeedBoost += 1.2f;
@@ -66,6 +65,7 @@ namespace CalamitySouls
                 player.npcTypeNoAggro[NPCType<CalamityMod.NPCs.SunkenSea.Clam>()] = true;
                 player.AddBuff(BuffType<CalamityMod.Buffs.StatDebuffs.Clamity>(), 2);
                 player.ModifyAllCrit(10);
+                player.meleeSpeed += 0.1f;
 
                 mplayer.WeaponKnockback += 3f;
                 mplayer.AllDamageByMult += 0.11f;
@@ -73,12 +73,11 @@ namespace CalamitySouls
                 mplayer.CreatureSpore = true;
 
                 player.maxMinions++;
-                player.minionDamage += 0.1f;
+                player.allDamage += 0.1f;
                 mplayer.FathomFishes = true;
                 if (player.whoAmI == Main.myPlayer)
                     if (player.ownedProjectileCounts(ProjectileType<FathomFishOtter>()) < 1)
                         Projectile.NewProjectile(player.Center, Vector2.Zero, ProjectileType<FathomFishOtter>(), 100, 0f, player.whoAmI);
-
 
                 cplayer.omegaBlueSet = true;
                 player.allDamage -= 0.1f;
@@ -115,10 +114,13 @@ namespace CalamitySouls
                 player.fireWalk = true;
                 player.lavaImmune = true;
 
+                mplayer.WeaponFireRateBoost += 0.15f;
                 mplayer.CanUmbraphileShealth = true;
                 mplayer.UmbraphileShealth = -1;
 
                 mplayer.CanHydrothermicRevive = true;
+                mplayer.MyMoveSpeedMult += 0.25f;
+                mplayer.MyMoveSpeedMult += 0.25f;
 
                 mplayer.EmpyreanProj = true;
                 player.AddBuff(BuffType<CalamityMod.Buffs.StatBuffs.XerocRage>(), 2);
@@ -127,6 +129,8 @@ namespace CalamitySouls
                 cplayer.throwingCrit -= 5;
                 player.allDamage += 0.1f;
                 player.ModifyAllCrit(10);
+                mplayer.MyMoveSpeedMult += 0.4f;
+                mplayer.MyMoveSpeedMult += 0.4f;
 
                 mplayer.BloodCanOption = true;
 
@@ -157,6 +161,8 @@ namespace CalamitySouls
 
                 mplayer.DaedalusEvade = true;
                 player.buffImmune[BuffType<CalamityMod.Buffs.StatDebuffs.ExtremeGravity>()] = true;
+                mplayer.MyMoveSpeedMult += 0.1f;
+                mplayer.MyMoveSpeedMult += 0.1f;
 
                 mplayer.TarragonLeaves = true;
 
@@ -168,12 +174,13 @@ namespace CalamitySouls
             if (mplayer.ForceTyranny)
             {
                 player.allDamage += 0.21f;
+                mplayer.MyAccelerationMult += 0.5f;
                 mplayer.GodslayerAncientOtherworld = true;
 
                 cplayer.godSlayer = true;
-                mplayer.GodslayerPhantom = true;
                 int grcd = player.FindBuffIndex(BuffType<CalamityMod.Buffs.Cooldowns.GodSlayerCooldown>());
                 if (grcd != -1 && player.buffTime[grcd] > 30 * 60) player.buffTime[grcd] = 30 * 60;
+                mplayer.GodslayerBuff = true;
 
                 mplayer.AuricRevive = true;
                 player.buffImmune[BuffType<CalamityMod.Buffs.DamageOverTime.VulnerabilityHex>()] = true;
@@ -181,6 +188,12 @@ namespace CalamitySouls
 
                 cplayer.shadowSpeed = true;
                 cplayer.dsSetBonus = true;
+                cplayer.scalPet = true;
+                if (player.whoAmI == Main.myPlayer)
+                {
+                    if (player.ownedProjectileCounts(ProjectileType<SCalPet>()) < 1)
+                        Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, ProjectileType<SCalPet>(), 0, 0f, Main.myPlayer);
+                }
             }
             if (mplayer.EnchAero)
             {
@@ -209,14 +222,14 @@ namespace CalamitySouls
                 player.findTreasure = true;
                 player.detectCreature = true;
                 player.dangerSense = true;
-                player.allDamage += 0.05f;
-                player.ModifyAllCrit(5);
-                player.manaCost -= 0.05f;
-                player.endurance += 0.05f;
-                mplayer.WeaponFireRateBoost += 0.05f;
-                player.slotsMinions += 0.5f;
+                player.allDamage += 0.1f;
+                player.ModifyAllCrit(10);
+                player.manaCost -= 0.1f;
+                player.endurance += 0.1f;
+                mplayer.WeaponFireRateBoost += 0.1f;
+                player.slotsMinions += 1f;
                 player.maxTurrets += 1;
-                player.statLifeMax2 += 20;
+                player.statLifeMax2 += 10;
                 if (liferadius < 0.5f && mplayer.AstralTimer <= 0) mplayer.AstralTimer = (4 + 10 + 4 + 60 * 60) * 60;
             }
             if (mplayer.EnchAuric)
@@ -232,6 +245,7 @@ namespace CalamitySouls
             if (mplayer.EnchBlood)
             {
                 cplayer.bloodflareSet = true;
+                player.statLifeMax2 += 100;
                 player.lifeMagnet = true;
                 player.manaMagnet = true;
                 mplayer.BloodCanOption = true;
@@ -269,8 +283,10 @@ namespace CalamitySouls
                 if (player.whoAmI == Main.myPlayer)
                 {
                     if (player.ownedProjectileCounts(ProjectileType<DaedalusTrueCrystal>()) < 1)
-                        Projectile.NewProjectile(player.Center, Vector2.Zero, ProjectileType<DaedalusTrueCrystal>(), (int)(150f * player.AverageDamage()), 0f, Main.myPlayer);
+                        Projectile.NewProjectile(player.Center, Vector2.Zero, ProjectileType<DaedalusTrueCrystal>(), (int)(200f * player.AverageDamage()), 0f, Main.myPlayer);
                 }
+                mplayer.MyMoveSpeedMult += 0.1f;
+                mplayer.MyMoveSpeedMult += 0.1f;
             }
             if (mplayer.EnchDemonshade)
             {
@@ -307,12 +323,14 @@ namespace CalamitySouls
                     if (player.ownedProjectileCounts(ProjectileType<EmpyreanSpectre>()) < 1)
                         Projectile.NewProjectile(player.Center, Vector2.Zero, ProjectileType<EmpyreanSpectre>(), 0, 0f, player.whoAmI);
                 }
+                mplayer.MyMoveSpeedMult += 0.4f;
+                mplayer.MyMoveSpeedMult += 0.4f;
             }
             if (mplayer.EnchFathom)
             {
                 cplayer.fathomSwarmer = true;
                 player.maxMinions++;
-                player.minionDamage += 0.1f;
+                player.allDamage += 0.1f;
                 mplayer.FathomFishes = true;
                 if (player.whoAmI == Main.myPlayer)
                 {
@@ -339,17 +357,20 @@ namespace CalamitySouls
                 mplayer.GodslayerPhantom = true;
                 int grcd = player.FindBuffIndex(BuffType<CalamityMod.Buffs.Cooldowns.GodSlayerCooldown>());
                 if (grcd != -1 && player.buffTime[grcd] > 30 * 60) player.buffTime[grcd] = 30 * 60;
-                mplayer.GodslayerDog = true;
+                mplayer.GodslayerBuff = true;
             }
             if (mplayer.EnchGodslayerAncient)
             {
                 player.allDamage += 0.21f;
+                mplayer.MyAccelerationMult += 0.5f;
                 mplayer.GodslayerAncientCanOtherworld = true;
             }
             if (mplayer.EnchHydrothermic)
             {
                 cplayer.ataxiaBlaze = true;
                 mplayer.CanHydrothermicRevive = true;
+                mplayer.MyMoveSpeedMult += 0.25f;
+                mplayer.MyMoveSpeedMult += 0.25f;
             }
             if (mplayer.EnchMollusk)
             {
@@ -365,9 +386,14 @@ namespace CalamitySouls
                                 (int)(140f * player.MinionDamage()), 0f, player.whoAmI, 0f, 0f);
                     }
                 }
+                player.ignoreWater = true;
                 player.npcTypeNoAggro[NPCType<CalamityMod.NPCs.SunkenSea.Clam>()] = true;
                 player.AddBuff(BuffType<CalamityMod.Buffs.StatDebuffs.Clamity>(), 2);
-                if (mplayer.EnchMollusk) if (player.setBonus != "" && !cplayer.molluskSet) player.ModifyAllCrit(20);
+                if (mplayer.EnchMollusk) if (player.setBonus != "" && !cplayer.molluskSet)
+                    {
+                        player.ModifyAllCrit(20);
+                        player.meleeSpeed += 0.2f;
+                    }
             }
             if (mplayer.EnchOmega)
             {
@@ -463,15 +489,9 @@ namespace CalamitySouls
                 mplayer.SulphurousCircle = true;
 
                 cplayer.sulfurJump = true;
-                player.doubleJumpFart = true;
-                cplayer.dashMod = 1;
-                player.jumpBoost = true;
+                if (cplayer.dashMod < 1) cplayer.dashMod = 1;
                 player.autoJump = true;
-                player.slowFall = true;
                 player.jumpSpeedBoost += 1.2f;
-
-                player.wingTime = player.wingTimeMax = 0;
-                player.rocketTime = 0;
             }
             if (mplayer.EnchTarragon)
             {
@@ -489,6 +509,7 @@ namespace CalamitySouls
             {
                 cplayer.umbraphileSet = true;
                 mplayer.UmbraphileExplosion = true;
+                mplayer.WeaponFireRateBoost += 0.15f;
                 mplayer.CanUmbraphileShealth = true;
             }
             if (mplayer.EnchVictide)
@@ -514,7 +535,7 @@ namespace CalamitySouls
                 {
                     player.moveSpeed += 0.77f;
                 }
-                if (player.miscCounter % 60 * 60 == 0)
+                if (player.miscCounter % (60 * 60) == 0)
                 {
                     player.AddBuff(BuffType<CalamityMod.Buffs.StatBuffs.AmidiasBlessing>(), 77 * 60);
                 }
@@ -533,15 +554,12 @@ namespace CalamitySouls
                 }
                 else player.statDefense += 6;
             }
+
+            if (mplayer.NoTrailPleaseEvenIfYouHaventDoneConfigPleaseDoSomethingToCloseTheTrail) mplayer.PrismaticTrail = false;
         }
         public static void UpdateLifeRegen(Player player)
         {
             CSPlayer mplayer = player.CS();
-            if (mplayer.StatigelTeleport)
-            {
-                player.lifeRegen += 5;
-                player.lifeRegenTime += 5;
-            }
             if (mplayer.EnchVictide && Collision.DrownCollision(player.position, player.width, player.height, player.gravDir))
             {
                 player.lifeRegen += 7;
@@ -639,7 +657,7 @@ namespace CalamitySouls
             {
                 if (player.whoAmI == Main.myPlayer)
                 {
-                    Projectile sStorm = Projectile.NewProjectileDirect(player.Center, Vector2.Zero, ModContent.ProjectileType<CalamityMod.Projectiles.Ranged.DesertTornado>(),
+                    Projectile sStorm = Projectile.NewProjectileDirect(player.Center, Vector2.Zero, ProjectileType<CalamityMod.Projectiles.Ranged.DesertTornado>(),
                         50, 4f, player.whoAmI);
                     sStorm.ranged = false; sStorm.timeLeft = 60;
                 }
@@ -648,11 +666,24 @@ namespace CalamitySouls
                     Dust dust = Dust.NewDustDirect(player.position, player.width, player.height, DustID.Sandnado);
                     dust.scale *= 3f;
                 }
-                player.ClearBuff(ModContent.BuffType<DesertDodgeBuff>());
-                player.AddBuff(ModContent.BuffType<DesertDodgeCD>(), 60 * 60);
+                player.ClearBuff(BuffType<DesertDodgeBuff>());
+                player.AddBuff(BuffType<DesertDodgeCD>(), 60 * 60);
                 mplayer.ImmunityTime += 2 * 60;
                 player.velocity = -Vector2.UnitY * 15f;
                 damage = 0; playSound = false; customDamage = false; crit = false; hitDirection = 0;
+                return false;
+            }
+            if (mplayer.FearmongerCanArea && mplayer.FearmongerAreaTimer == 0)
+            {
+                Main.PlaySound(SoundID.Item46, player.Center);
+                mplayer.FearmongerAreaTimer = 60 * 60;
+                if (player.whoAmI == Main.myPlayer)
+                {
+                    Projectile area = Projectile.NewProjectileDirect(player.Center, Vector2.Zero,
+                           ProjectileType<FearmongerAreaProj>(), 0, 0f, player.whoAmI);
+                    area.Center = player.Center;
+                }
+                mplayer.ImmunityTime += player.longInvince ? 4 * 60 : 2 * 60;
                 return false;
             }
             if (mplayer.GodslayerAncientOtherworld)
@@ -665,17 +696,6 @@ namespace CalamitySouls
         {
             CSPlayer mplayer = player.CS();
             CalamityPlayer cplayer = player.GetModPlayer<CalamityPlayer>();
-            if (mplayer.FearmongerCanArea && mplayer.FearmongerAreaTimer == 0)
-            {
-                Main.PlaySound(SoundID.Item46, player.Center);
-                mplayer.FearmongerAreaTimer = 30 * 60;
-                if (player.whoAmI == Main.myPlayer)
-                {
-                    Projectile area = Projectile.NewProjectileDirect(player.Center, Vector2.Zero,
-                           ProjectileType<FearmongerAreaProj>(), 0, 0f, player.whoAmI);
-                    area.Center = player.Center;
-                }
-            }
             if (mplayer.ReaverEffect)
             {
                 Main.PlaySound(SoundID.Item, (int)player.position.X, (int)player.position.Y, 1, 1f, 0f);
@@ -737,7 +757,7 @@ namespace CalamitySouls
                 target.AddBuff(BuffID.Ichor, 10 * 60);
                 target.AddBuff(BuffID.CursedInferno, 10 * 60);
                 target.AddBuff(BuffID.Venom, 10 * 60);
-                if ((proj == null || !proj.IsAExtraProjectile()) && player.whoAmI == Main.myPlayer)
+                if ((proj == null || !proj.IsAnExtraProj()) && player.whoAmI == Main.myPlayer)
                 {
                     Vector2 velocity = CalamityUtils.RandomVelocity(100f, 70f, 100f, 0.1f);
                     Projectile spore = Projectile.NewProjectileDirect(target.Center, velocity, ProjectileID.TerrarianBeam,
@@ -780,15 +800,15 @@ namespace CalamitySouls
             if (mplayer.EmpyreanProj)
             {
                 Vector2 velocity = CalamityUtils.RandomVelocity(100f, 15f, 15f, 1f);
-                if (proj != null && !CSLists.ExtraProjectileList.Contains(proj.type))
+                if (proj != null && !proj.IsAnExtraProj() && Main.rand.Next(3) == 0)
                 {
-                    Vector2 Center = ((proj == null) ? target.Center : proj.Center);
+                    Vector2 Center = target.Center;
                     int damage2 = damage;
                     switch (Main.rand.Next(5))
                     {
                         case 0:
                             {
-                                damage2 = (int)(damage2 * 0.8f); if (damage2 <= 0) break;
+                                damage2 = (int)(damage2 * 0.16f); if (damage2 <= 0) break;
                                 Projectile Orb = Projectile.NewProjectileDirect(Center, velocity * (Main.rand.Next(15, 30) / 15),
                                          ProjectileType<CalamityMod.Projectiles.Typeless.XerocStar>(),
                                          damage2, 0f, player.whoAmI, target.whoAmI, 0f);
@@ -799,7 +819,7 @@ namespace CalamitySouls
                             }
                         case 1:
                             {
-                                damage2 = (int)(damage2 * 0.625f); if (damage2 <= 0) break;
+                                damage2 = (int)(damage2 * 0.125f); if (damage2 <= 0) break;
                                 Projectile Orb = Projectile.NewProjectileDirect(Center, velocity * 2f,
                                     ProjectileType<CalamityMod.Projectiles.Typeless.XerocOrb>(),
                                     damage2, 0f, player.whoAmI, target.whoAmI, 0f);
@@ -830,21 +850,21 @@ namespace CalamitySouls
                             }
                         case 2:
                             {
-                                damage2 = (int)(damage2 * 0.15); if (damage2 <= 0) break;
+                                damage2 = (int)(damage2 * 0.03); if (damage2 <= 0) break;
                                 Projectile.NewProjectile(Center, Vector2.Zero, ProjectileType<CalamityMod.Projectiles.Typeless.XerocFire>(),
                              damage2, 0f, player.whoAmI, 0f, 0f);
                                 break;
                             }
                         case 3:
                             {
-                                damage2 = (int)(damage2 * 0.2); if (damage2 <= 0) break;
+                                damage2 = (int)(damage2 * 0.04); if (damage2 <= 0) break;
                                 Projectile.NewProjectile(Center, Vector2.Zero, ProjectileType<CalamityMod.Projectiles.Typeless.XerocBlast>(),
                        damage2, 0f, player.whoAmI, 0f, 0f);
                                 break;
                             }
                         case 4:
                             {
-                                damage2 = (int)(damage2 * 0.6); if (damage2 <= 0) break;
+                                damage2 = (int)(damage2 * 0.12); if (damage2 <= 0) break;
                                 Projectile Orb = Projectile.NewProjectileDirect(Center, velocity,
                                     ProjectileType<CalamityMod.Projectiles.Typeless.XerocBubble>(),
                                   damage2, 0f, player.whoAmI, target.whoAmI, 0f);
@@ -856,9 +876,9 @@ namespace CalamitySouls
                     }
                 }
             }
-            if (mplayer.GodslayerDog)
+            if (mplayer.GodslayerPhantom)
             {
-                if (cplayer.godSlayerDmg <= 0f && proj != null && !CSLists.ExtraProjectileList.Contains(proj.type))
+                if (cplayer.godSlayerDmg <= 0f && proj != null && !proj.IsAnExtraProj())
                 {
                     CalamityMod.Projectiles.CalamityGlobalProjectile.SpawnOrb(proj, damage,
                         ProjectileType<CalamityMod.Projectiles.Typeless.GodSlayerPhantom>(), 800f, 15f, true);
@@ -875,7 +895,7 @@ namespace CalamitySouls
                 target.AddBuff(BuffID.Ichor, 10 * 60);
                 target.AddBuff(BuffID.CursedInferno, 10 * 60);
                 target.AddBuff(BuffID.Venom, 10 * 60);
-                if ((proj == null || !proj.IsAExtraProjectile()) && player.whoAmI == Main.myPlayer)
+                if ((proj == null || !proj.IsAnExtraProj()) && player.whoAmI == Main.myPlayer)
                 {
                     if (proj != null)
                     {
@@ -898,7 +918,7 @@ namespace CalamitySouls
             }
             if (mplayer.UmbraphileExplosion && proj != null)
             {
-                if (!proj.Calamity().rogue && (Utils.NextBool(Main.rand, 4)) && !proj.IsAExtraProjectile())
+                if (!proj.Calamity().rogue && (Utils.NextBool(Main.rand, 4)) && !proj.IsAnExtraProj())
                 {
                     Projectile explosion = Projectile.NewProjectileDirect(proj.Center, Vector2.Zero,
                         ProjectileType<CalamityMod.Projectiles.Rogue.UmbraphileBoom>(), CalamityUtils.DamageSoftCap(proj.damage * 0.25, 50), 0f, player.whoAmI);
@@ -938,6 +958,10 @@ namespace CalamitySouls
                 if (target.whoAmI == mplayer.FearmongerMark) mult += 0.25f;
                 else mult -= 0.5f;
             }
+            if (mplayer.GodslayerCrit)
+            {
+                if (Main.rand.Next(2) == 0) crit = true;
+            }
             if (mplayer.PlagueReaperPlague && target.Calamity().pFlames > 0) mult += 0.1f;
             if (mplayer.PlagueBringerPlague && target.Calamity().pFlames > 0) flat += 11.11f;
             if (mplayer.ReaverPlantera)
@@ -960,7 +984,7 @@ namespace CalamitySouls
             damage = (int)(damage * (mult + mplayer.AllDamageByMult) + flat);
             float adrenalineDamageBoost = 2f + (cplayer.adrenalineBoostOne ? 0.15f : 0f)
                 + (cplayer.adrenalineBoostTwo ? 0.15f : 0) + (cplayer.adrenalineBoostThree ? 0.15f : 0);
-            if (cplayer.adrenalineModeActive) damage = (int)(damage * (adrenalineDamageBoost + 1 - mplayer.AdrenalineDamageBoost) / adrenalineDamageBoost);
+            if (cplayer.adrenalineModeActive) damage = (int)(damage * (adrenalineDamageBoost  + mplayer.AdrenalineDamageBoost) / adrenalineDamageBoost);
         }
         public static bool PreKill(Player player, double damage, int hitDirection, bool pvp, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource)
         {
@@ -1122,9 +1146,9 @@ namespace CalamitySouls
                     player.DoAVisualBuff(BuffType<FearmongerAreaCooldown>(), mplayer.FearmongerAreaTimer);
                     mplayer.FearmongerAreaTimer--;
                 }
-                if (mplayer.FearmongerAreaTimer > 25 * 60)
+                if (mplayer.FearmongerAreaTimer > 55 * 60)
                 {
-                    player.DoAVisualBuff(BuffType<FearmongerArea>(), mplayer.FearmongerAreaTimer - 25 * 60);
+                    player.DoAVisualBuff(BuffType<FearmongerArea>(), mplayer.FearmongerAreaTimer - 55 * 60);
                 }
             }
             if (mplayer.FearmongerCanMark)
@@ -1141,7 +1165,59 @@ namespace CalamitySouls
             }
             if (mplayer.Frozen)
             {
+                player.noKnockback = true;
                 player.statDefense += 12;
+            }
+            if (mplayer.GodslayerBuff)
+            {
+                int oneBuffTime = 5 * 60;
+                if (mplayer.GodslayerBuffTimer == 0) mplayer.GodslayerBuffTimer = Main.rand.Next(5 * oneBuffTime);
+                int bufftimer = mplayer.GodslayerBuffTimer % (5 * oneBuffTime);
+                int bufftier = bufftimer / oneBuffTime;
+                bufftimer -= bufftier * oneBuffTime;
+                bufftimer = oneBuffTime - bufftimer;
+                mplayer.GodslayerBuffTimer++;
+                if (bufftier == 0)
+                {
+                    player.statDefense += 80;
+                    player.DoAVisualBuff(BuffType<GodslayerDefense>(), bufftimer);
+                }
+                else if (bufftier == 1)
+                {
+                    for (int p = 0; p < Main.projectile.Length; p++)
+                    {
+                        Projectile splitProj = Main.projectile[p];
+                        if (splitProj.active && splitProj.friendly && splitProj.owner == Main.myPlayer)
+                        {
+                            for (int i = 0; i < splitProj.extraUpdates + 1; i++) 
+                            {
+                                if (ProjectileLoader.PreAI(splitProj))
+                                {
+                                    ProjectileLoader.AI(splitProj);
+                                    ProjectileLoader.PostAI(splitProj);
+                                }
+                                splitProj.position += splitProj.velocity;
+                            }
+                        }
+                    }
+                    player.DoAVisualBuff(BuffType<GodslayerSplit>(), bufftimer);
+                }
+                else if (bufftier == 2)
+                {
+                    if (player.miscCounter % 10 == 0) player.HealMana(10);
+                    if (player.miscCounter % 10 == 5) player.HealLife(10);
+                    player.DoAVisualBuff(BuffType<GodslayerResource>(), bufftimer);
+                }
+                else if (bufftier == 3)
+                {
+                    mplayer.GodslayerCrit = true;
+                    player.DoAVisualBuff(BuffType<GodslayerCrit>(), bufftimer);
+                }
+                else if (bufftier == 4)
+                {
+                    mplayer.WeaponFireRateBoost += 0.5f;
+                    player.DoAVisualBuff(BuffType<GodslayerSpeed>(), bufftimer);
+                }
             }
             if (mplayer.GodslayerAncientCanOtherworld)
             {
@@ -1160,7 +1236,8 @@ namespace CalamitySouls
             }
             if (mplayer.PlagueReaperFlight)
             {
-                player.wingTimeMax += 60;
+                player.wingTime = player.wingTimeMax = 99999;
+                player.rocketTime = 99999;
                 cplayer.caveDarkness = 0.75f + cplayer.caveDarkness * 0.25f;
             }
             if (mplayer.pPrism)
@@ -1200,11 +1277,6 @@ namespace CalamitySouls
                 player.ClearBuff(BuffType<SilvaRecharge>());
                 player.ClearBuff(BuffType<SilvaInvulnerable>());
             }
-            if (mplayer.StatigelTeleport)
-            {
-                player.statDefense += 5;
-                player.endurance += 0.05f;
-            }
             if (mplayer.SulphurousCircle)
             {
                 int rand = Main.rand.Next(360);
@@ -1222,7 +1294,7 @@ namespace CalamitySouls
                     for (int i = 0; i < amt; i++)
                     {
                         Vector2 rot = MathHelper.ToRadians(rand + 360f * i / amt).ToRotationVector2();
-                        Dust sulp = Dust.NewDustPerfect(Main.MouseWorld + rot * 8f, 74);
+                        Dust sulp = Dust.NewDustPerfect(Main.MouseWorld + rot * 24f, 74);
                         sulp.noGravity = true;
                         sulp.noLight = true;
                         sulp.scale = 0.19f;
@@ -1239,7 +1311,7 @@ namespace CalamitySouls
                             npc.buffImmune[poi] = false;
                             npc.AddBuff(poi, 5 * 60);
                         }
-                        if (player.whoAmI == Main.myPlayer && npc.Hitbox.Distance(Main.MouseWorld) < 8f)
+                        if (player.whoAmI == Main.myPlayer && npc.Hitbox.Distance(Main.MouseWorld) < 24f)
                         {
                             npc.buffImmune[poi] = false;
                             npc.AddBuff(poi, 5);
@@ -1252,10 +1324,10 @@ namespace CalamitySouls
                 if (!mplayer.TitanPower) mplayer.TitanPowerBuff = false;
                 else
                 {
-                    mplayer.AllDamageByMult += 0.75f;
-                    mplayer.WeaponFireRateBoost /= 2;
+                    mplayer.AllDamageByMult += 0.22f;
+                    mplayer.WeaponFireRateBoost -= 0.35f;
                     int ThisIsANumber = (player.maxMinions % 2 == 0) ? 0 : 1;
-                    player.maxMinions = (int)(player.maxMinions / 2f) + ThisIsANumber;
+                    player.maxMinions = (int)(player.maxMinions / 0.65f) + ThisIsANumber;
                     player.AddBuff(BuffType<TitanPower>(), 2);
                 }
             }
@@ -1281,15 +1353,23 @@ namespace CalamitySouls
         public static void PostUpdateRunSpeeds(Player player)
         {
             CSPlayer mplayer = player.CS();
-            if (mplayer.GodslayerAncientOtherworld)
+            CalamityPlayer cplayer = player.Calamity();
+            if (CSUtils.AnyBossAlive && mplayer.MyAccelerationMult > 2f) mplayer.MyAccelerationMult = 2f;
+            if (CSUtils.AnyBossAlive && mplayer.MyMoveSpeedMult > 1.5f) mplayer.MyMoveSpeedMult = 1.5f;
+            if (mplayer.GodslayerAncientOtherworld && !CSUtils.AnyBossAlive)
             {
-                player.runAcceleration *= 2;
-                if (!CSUtils.AnyBossAlive)
-                {
-                    player.accRunSpeed *= 2;
-                    player.maxRunSpeed *= 2;
-                }
+                mplayer.MyMoveSpeedMult += 0.5f;
             }
+            if (mplayer.sgCore && player.mount.Active && player.mount.Type == MountID.Slime)
+            {
+                mplayer.MyAccelerationMult += 2f;
+                mplayer.MyMoveSpeedMult += 2f;
+                player.doubleJumpSail= true;
+                player.jumpAgainSail = true;
+            }
+            player.runAcceleration *= mplayer.MyAccelerationMult;
+            player.accRunSpeed *= mplayer.MyMoveSpeedMult;
+            player.maxRunSpeed *= mplayer.MyMoveSpeedMult;
         }
         public static void PostUpdate(Player player)
         {

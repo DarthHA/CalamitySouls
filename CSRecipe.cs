@@ -1,11 +1,41 @@
 ﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using static Terraria.ModLoader.ModContent;
 
 namespace CalamitySouls
 {
     public static class CSRecipe
     {
+        public static void AddRecipes()
+        {
+            ModRecipe recipe = new ModRecipe(CSUtils.Cal);
+            recipe.AddIngredient(ItemID.AntlionMandible,10);
+            recipe.AddIngredient(ItemID.HardenedSand, 25);
+            recipe.AddTile(TileID.Anvils);
+            recipe.SetResult(ItemType<CalamityMod.Items.Weapons.Melee.MandibleClaws>());
+            recipe.AddRecipe();
+            recipe = new ModRecipe(CSUtils.Cal);
+            recipe.AddIngredient(ItemID.Sandstone, 30);
+            recipe.AddIngredient(ItemID.HardenedSand, 30);
+            recipe.AddIngredient(ItemID.Torch, 10);
+            recipe.AddTile(TileID.Anvils);
+            recipe.SetResult(ItemType<CalamityMod.Items.Weapons.Melee.BurntSienna>());
+            recipe.AddRecipe();
+            recipe = new ModRecipe(CSUtils.Cal);
+            recipe.AddIngredient(ItemID.AntlionMandible, 5);
+            recipe.AddIngredient(ItemID.HardenedSand, 20);
+            recipe.AddIngredient(ItemID.WhiteString);
+            recipe.AddTile(TileID.Anvils);
+            recipe.SetResult(ItemType<CalamityMod.Items.Weapons.Ranged.MandibleBow>());
+            recipe.AddRecipe();
+            recipe = new ModRecipe(CSUtils.Cal);
+            recipe.AddIngredient(ItemType<CalamityMod.Items.Materials.StormlionMandible>(), 3);
+            recipe.AddIngredient(ItemID.HardenedSand, 20);
+            recipe.AddTile(TileID.Anvils);
+            recipe.SetResult(ItemType<CalamityMod.Items.Weapons.Summon.StormjawStaff>());
+            recipe.AddRecipe();
+        }
         public static void AddRecipeGroup()
         {
             RecipeGroup.RegisterGroup("CS:Aerospec", new RecipeGroup(() => "Any Aerospec Helmet", new int[]

@@ -43,7 +43,7 @@ namespace CalamitySouls
         public override void SetDefaults(NPC npc)
         {
             if (npc.boss && CalamityWorld.revenge && !notDeadBossList.Contains(npc.type) && npc.Calamity().newAI[0] != 0f
-                && Main.netMode != NetmodeID.Server && !Main.LocalPlayer.dead && Main.LocalPlayer.active) 
+                && Main.netMode != NetmodeID.Server && !Main.LocalPlayer.dead && Main.LocalPlayer.active)
             {
                 Main.LocalPlayer.CS().PlagueReaperHasAdrenalineCurrently = false;
             }
@@ -51,7 +51,7 @@ namespace CalamitySouls
         public override void ResetEffects(NPC npc)
         {
             Frozen = false;
-            if (CSWorld.HyperMode) CanExtraUpdate = true;
+            if (CSWorld.HyperMode && !CSUtils.ManicModeNerf) ExtraUpdate = CSUtils.TransFloatToInt(1.1f);
         }
         public override void PostAI(NPC npc)
         {
@@ -80,13 +80,16 @@ namespace CalamitySouls
                     }
                 }
             }
-            if (CanExtraUpdate)
+            if (ExtraUpdate > 0)
             {
-                CanExtraUpdate = false;
+                ExtraUpdate--;
+                if (npc.active)
+                {
                 if (NPCLoader.PreAI(npc))
                 {
                     NPCLoader.AI(npc);
                     NPCLoader.PostAI(npc);
+                }
                 }
             }
             if (Frozen)
@@ -106,20 +109,25 @@ namespace CalamitySouls
         }
         public override void NPCLoot(NPC npc)
         {
-            if (npc.boss && CalamityWorld.revenge && !notDeadBossList2.Contains(npc.type) 
+            if (npc.boss && CalamityWorld.revenge && !notDeadBossList2.Contains(npc.type)
                 && Main.netMode != NetmodeID.Server && !Main.player[Main.myPlayer].dead && Main.player[Main.myPlayer].active)
             {
                 Main.LocalPlayer.CS().PlagueReaperHasAdrenalineCurrently = false;
             }
         }
+        public override void EditSpawnRate(Player player, ref int spawnRate, ref int maxSpawns)
+        {
+            if (CSWorld.HyperMode && CSUtils.ManicModeNerf)
+            {
+                spawnRate *= 2;
+                maxSpawns /= 2;
+            }
+        }
         public override bool StrikeNPC(NPC npc, ref double damage, int defense, ref float knockback, int hitDirection, ref bool crit)
         {
-            if (CSWorld.HyperMode)
+            if (CSWorld.HyperMode && !CSUtils.ManicModeNerf) 
             {
-                damage += defense;
-                damage /= 2;
-                if (crit) damage *= 1.05f;
-                knockback /= 2;
+                damage *= 0.7f;
             }
             return true;
         }
@@ -154,6 +162,6 @@ namespace CalamitySouls
         }
         public override bool InstancePerEntity => true;
         public bool Frozen;
-        public bool CanExtraUpdate;
+        public int ExtraUpdate = 0;
     }
 }

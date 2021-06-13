@@ -73,6 +73,10 @@ namespace CalamitySouls
 			UnloadHotKeys();
 			CSLists.Unload();
         }
+        public override void AddRecipes()
+        {
+			CSRecipe.AddRecipes();
+        }
         public override void AddRecipeGroups()
         {
             CSRecipe.AddRecipeGroup();
@@ -114,7 +118,6 @@ namespace CalamitySouls
 			BrimflameKey = RegisterHotKey("Brimflame enchant hotkey", "G");
 			FearmongerArea = RegisterHotKey("Fearmonger Frigid Area hotkey", "K");
 			FearmongerMark = RegisterHotKey("Fearmonger Mark hotkey", "J");
-			GodslayerKey = RegisterHotKey("Godslayer Devourer hotkey", "H");
 			StatigelKey = RegisterHotKey("Statigel enchant hotkey", "B");
 			TitanKey = RegisterHotKey("Titan heart enchant hotkey", "N");
         }
@@ -124,7 +127,6 @@ namespace CalamitySouls
 			BrimflameKey = null;
 			FearmongerArea = null;
 			FearmongerMark = null;
-			GodslayerKey = null;
 			StatigelKey = null;
 			TitanKey = null;
         }
@@ -132,7 +134,6 @@ namespace CalamitySouls
 		public static ModHotKey BrimflameKey;
 		public static ModHotKey FearmongerArea;
 		public static ModHotKey FearmongerMark;
-		public static ModHotKey GodslayerKey;
 		public static ModHotKey StatigelKey;
 		public static ModHotKey TitanKey;
     }

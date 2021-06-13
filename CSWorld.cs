@@ -17,6 +17,15 @@ namespace CalamitySouls
         {
             HyperMode = false;
         }
+        public override void PreUpdate()
+        {
+            if (!CalamityMod.World.CalamityWorld.revenge && HyperMode) 
+            {
+                HyperMode = false;
+                string text = CSUtils.GameCultureChinese ? "欠抽模式关闭" : "Manic Mode deactivated.";
+                Main.NewText(text, Color.SkyBlue);
+            }
+        }
         public override TagCompound Save()
         {
             TagCompound tag = new TagCompound

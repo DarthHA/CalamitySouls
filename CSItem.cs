@@ -7,8 +7,10 @@ using Terraria.ModLoader;
 using CalamityMod.Items.Weapons.Melee;
 using CalamityMod.Items.Weapons.Magic;
 using CalamityMod.Items.Weapons.Rogue;
+using CalamityMod.Items.TreasureBags;
 using CalamityMod.Projectiles.Melee;
 using System.Collections.Generic;
+using CalamitySouls.Items.BossLoots;
 
 namespace CalamitySouls
 {
@@ -117,7 +119,7 @@ namespace CalamitySouls
                 if (item.type == ItemType<TrueTyrantYharimsUltisword>())
                 {
                     type = ProjectileType<HyperBlade>();
-                    Projectile slash = Projectile.NewProjectileDirect(position, velocity * 2f, type, damage * 5, 0f, player.whoAmI);
+                    Projectile slash = Projectile.NewProjectileDirect(position, velocity * 2f, type, damage * 4, 0f, player.whoAmI);
                     slash.penetrate = -1;
                     slash.extraUpdates = 4;
                     slash.usesLocalNPCImmunity = true;
@@ -154,6 +156,13 @@ namespace CalamitySouls
                 }
             }
             return true;
+        }
+        public override void RightClick(Item item, Player player)
+        {
+            if (CSWorld.HyperMode)
+            {
+                if (item.type == ItemType<SlimeGodBag>()) Item.NewItem(player.Center, ItemType<CoreofSlimeGod>());
+            }
         }
     }
 }
